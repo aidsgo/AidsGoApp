@@ -6,8 +6,10 @@ import {
     ListView,
     TouchableOpacity
 } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 import IncidentDescription from './IncidentDescription'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class IncidentList extends Component {
     constructor(props) {
@@ -48,6 +50,12 @@ class IncidentList extends Component {
                         onPress={() => {this.onSwitchTab('mine')}}>
                         <Text style={styles.tabText}>Mine</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.medKit}
+                        onPress={() => Actions.helpInstructionsList()}>
+                        <Icon style={{color: 'white'}} name={'ios-medkit'} size={30}/>
+                    </TouchableOpacity>
                 </View>
                 <ListView style={styles.list}
                     dataSource={this.visibleIncidents()}
@@ -79,6 +87,12 @@ const styles = StyleSheet.create({
         padding: 2,
         justifyContent: 'center',
         alignItems: 'center'
+
+    },
+    medKit:{
+        position: 'absolute',
+        bottom: 10,
+        right: 10
     },
     firstTab: {
         borderTopLeftRadius: 5,

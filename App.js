@@ -8,6 +8,8 @@ import IncidentListContainer from './containers/IncidentListContainer';
 import IncidentDetailsContainer from './containers/IncidentDetailsContainer';
 import Logo from './components/Logo';
 import Login from './components/Login';
+import HelpInstructionsList from './components/helpInstructionsList'
+import HelpInstructionDetail from './components/helpInstrcuctionDetail'
 
 const RouterWithRedux = connect()(Router);
 import reducers from './reducers/Index';
@@ -38,6 +40,17 @@ class App extends Component {
                                hideBackImage={true}
                                backTitle={<Icon style={{color: '#333'}} name={'ios-arrow-back'} size={25} />}
                                onBack={() => {Actions.pop()}}/>
+
+
+                        <Scene key="helpInstructionsList" component={HelpInstructionsList}
+                               navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
+                               titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
+                               title="HelpInstructions"/>
+
+                        <Scene key="helpInstructionsDetail" component={HelpInstructionDetail}
+                               navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
+                               titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
+                               title="救援帮助"/>
                     </Scene>
                 </RouterWithRedux>
             </Provider>
