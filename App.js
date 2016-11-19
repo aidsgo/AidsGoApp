@@ -6,10 +6,10 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IncidentListContainer from './containers/IncidentListContainer';
 import IncidentDetailsContainer from './containers/IncidentDetailsContainer';
+import HelpInstructionsContainer from './containers/HelpInstructionsListContainer';
 import Logo from './components/Logo';
 import Login from './components/Login';
-import HelpInstructionsList from './components/helpInstructionsList'
-import HelpInstructionDetail from './components/helpInstrcuctionDetail'
+import HelpInstructionDetail from './components/HelpInstrcuctionDetail'
 
 const RouterWithRedux = connect()(Router);
 import reducers from './reducers/Index';
@@ -24,14 +24,14 @@ class App extends Component {
             <Provider store={store}>
                 <RouterWithRedux>
                     <Scene key="root">
-                        <Scene key="logo" component={Logo} initial={true}/>
+                        <Scene key="logo" component={Logo} initial={true} hideNavBar={true}/>
 
-                        <Scene key="aigsGoLogin" component={Login} />
+                        <Scene key="aigsGoLogin" component={Login} hideNavBar={true}/>
 
                         <Scene key="incidentListContainer" component={IncidentListContainer}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
-                               title="Incidents nearby"/>
+                               title="Incidents nearby" hideNavBar={false}/>
 
                         <Scene key="incidentDetailsContainer" component={IncidentDetailsContainer}
                                navigationBarStyle={{backgroundColor: 'rgb(250,250,250)'}}
@@ -39,18 +39,17 @@ class App extends Component {
                                title="Incident Details"
                                hideBackImage={true}
                                backTitle={<Icon style={{color: '#333'}} name={'ios-arrow-back'} size={25} />}
-                               onBack={() => {Actions.pop()}}/>
+                               onBack={() => {Actions.pop()}} hideNavBar={false}/>
 
-
-                        <Scene key="helpInstructionsList" component={HelpInstructionsList}
+                        <Scene key="helpInstructionsList" component={HelpInstructionsContainer}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
-                               title="HelpInstructions"/>
+                               title="HelpInstructions" hideNavBar={false}/>
 
                         <Scene key="helpInstructionsDetail" component={HelpInstructionDetail}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
-                               title="救援帮助"/>
+                               title="救援帮助" hideNavBar={false}/>
                     </Scene>
                 </RouterWithRedux>
             </Provider>
