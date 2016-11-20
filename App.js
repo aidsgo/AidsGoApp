@@ -33,13 +33,7 @@ class App extends Component {
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
                                title="Incidents nearby" hideNavBar={false}/>
 
-                        <Scene key="incidentDetailsContainer" component={IncidentDetailsContainer}
-                               navigationBarStyle={{backgroundColor: 'rgb(250,250,250)'}}
-                               titleStyle={{color: '#333', fontWeight: 'bold', fontSize: 16}}
-                               title="Incident Details"
-                               hideBackImage={true}
-                               backTitle={<Icon style={{color: '#333'}} name={'ios-arrow-back'} size={25} />}
-                               onBack={() => {Actions.pop()}} hideNavBar={false}/>
+                        <Scene key="incidentDetailsContainer" component={IncidentDetailsContainer} hideNavBar={true}/>
 
                         <Scene key="helpInstructionsList" component={HelpInstructionsContainer}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
