@@ -23,7 +23,10 @@ class IncidentDetails extends Component {
             <View style={{flex: 1}}>
                 <View style={styles.navBar}>
                     <TouchableOpacity onPress={() => Actions.pop()}>
-                        <Icon style={styles.backIcon} name={'ios-arrow-back'} size={40}/>
+                        <Icon style={{color: '#FFFFFF',  top: 20, left: 30}} name={'ios-arrow-back'} size={40}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Actions.helpInstructionsList()}>
+                        <Icon style={{color: '#FFFFFF', top: 20, right: 30}} name={'ios-medkit'} size={40}/>
                     </TouchableOpacity>
                 </View>
                 <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng}/>
@@ -37,17 +40,14 @@ class IncidentDetails extends Component {
 const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     navBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         position: 'absolute',
         width: deviceWidth,
         height: 65,
         zIndex: 10,
         backgroundColor: '#53585F',
-        opacity: 0.32,
-    },
-    backIcon: {
-        top: 20,
-        left: 30,
-        color: '#FFFFFF'
+        opacity: 0.4
     }
 });
 

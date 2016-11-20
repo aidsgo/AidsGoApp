@@ -28,7 +28,7 @@ class App extends Component {
 
                         <Scene key="aigsGoLogin" component={Login} hideNavBar={true}/>
 
-                        <Scene key="incidentListContainer" component={IncidentListContainer}
+                        <Scene key="incidentListContainer" component={IncidentListContainer} type={'reset'}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
                                title="Incidents nearby" hideNavBar={false}/>
@@ -37,11 +37,17 @@ class App extends Component {
 
                         <Scene key="helpInstructionsList" component={HelpInstructionsContainer}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
+                               hideBackImage={true}
+                               backTitle={<Icon style={{color: '#FFFFFF', width: 40, height: 40}} name={'ios-arrow-back'} size={25} />}
+                               onBack={() => {Actions.pop()}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
                                title="HelpInstructions" hideNavBar={false}/>
 
                         <Scene key="helpInstructionsDetail" component={HelpInstructionDetail}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
+                               hideBackImage={true}
+                               backTitle={<Icon style={{color: '#FFFFFF', width: 40, height: 40}} name={'ios-arrow-back'} size={25} />}
+                               onBack={() => {Actions.pop()}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
                                title="救援帮助" hideNavBar={false}/>
                     </Scene>
