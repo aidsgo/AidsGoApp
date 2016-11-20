@@ -79,7 +79,7 @@ class DetailsPanel extends Component {
                         </View>
                         <View style={styles.logo}>
                             <Image style={{width: 65, height: 65, resizeMode: 'contain'}}
-                                   source={require('../images/logo.png')}></Image>
+                                   source={require('../public/img/logo.png')}></Image>
                         </View>
                     </View>
 
