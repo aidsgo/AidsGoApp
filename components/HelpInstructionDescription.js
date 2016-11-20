@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         marginBottom: 10,
-        backgroundColor: '#FFFFFF'
+        marginRight: 5,
+        backgroundColor:'rgba(250,250,250,0.8)'
     },
     indicator: {
         width: 40,
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     details: {
         flex: 1,
         padding: 20,
-        paddingRight: 10
+        paddingRight: 10,
     },
     logo: {
         width: 55,
