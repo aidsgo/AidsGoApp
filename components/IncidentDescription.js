@@ -32,7 +32,7 @@ class IncidentDescription extends Component {
                         </Text>
                         <Text style={{marginTop: 5, fontSize: 16}}>
                             <Text style={{fontWeight: 'bold'}}>{this.props.incident.distance}</Text>
-                            <Text> meters away from you</Text>
+                            <Text> meters away from you.</Text>
                         </Text>
                     </View>
                 </View>

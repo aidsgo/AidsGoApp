@@ -6,11 +6,10 @@ import {
     Image,
     Dimensions,
     TouchableOpacity,
-    ScrollView,
     Platform
-} from 'react-native';
+} from 'react-native'
+import DetailsPanel from '../components/DetailsPanel'
 
-import Communications from 'react-native-communications';
 import MapView from 'react-native-maps';
 import {Actions} from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
@@ -31,17 +30,23 @@ class IncidentDetails extends Component {
 
     renderButtons() {
         if (this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
-            return (<View style={{alignItems: 'center'}}><TouchableOpacity style={styles.resolveBtn}
-                                                                           onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id); Actions.pop()}}>
-                <Text style={styles.btnText}>Resolve</Text>
-            </TouchableOpacity></View>)
+            return (
+                <View style={{alignItems: 'center', position: 'absoulte', right: 0, bottom: 0}}>
+                    <TouchableOpacity style={styles.resolveBtn}
+                                      onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id); Actions.pop()}}>
+                        <Text style={styles.btnText}>Resolve</Text>
+                    </TouchableOpacity>
+                </View>
+            )
         } else if (!this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
-            return (<View style={styles.row}>
-                <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onIncidentAccept(this.props.incident.id, this.props.user.id); Actions.pop()}}>
-                    <Text style={styles.btnText}>Volunteer</Text>
-                </TouchableOpacity>
-            </View>)
+            return (
+                <View style={styles.row}>
+                    <TouchableOpacity style={styles.btn}
+                                      onPress={() => {this.props.onIncidentAccept(this.props.incident.id, this.props.user.id); Actions.pop()}}>
+                        <Text style={styles.btnText}>Volunteer</Text>
+                    </TouchableOpacity>
+                </View>
+            )
         }
     };
 
@@ -72,8 +77,8 @@ class IncidentDetails extends Component {
             <View style={styles.images}>
                 {
                     this.props.incident.images.map((image) => {
-                    return <Image source={image} style={styles.image}/>
-                })
+                        return <Image source={image} style={styles.image}/>
+                    })
                 }
             </View>
         );
@@ -104,100 +109,48 @@ class IncidentDetails extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
-                <View style={styles.details_container}>
-                    <View style={styles.row}>
-                        <Text style={[styles.label]}>Name : </Text>
-                        <Text style={styles.subTitle}> {this.props.incident.name}</Text>
-                    </View>
-
-                    <View style={styles.row}>
-                        <Text style={[styles.label]}>Location: </Text>
-                        <Text style={styles.subTitle}> {this.props.incident.distance} meters away from you</Text>
-                    </View>
-                    <View style={styles.row}>
-                        <Text style={[styles.label]}>Time: </Text>
-                        <Text style={styles.subTitle}> {this.props.incident.time}</Text>
-                    </View>
-                    <View style={styles.row}>
-                        <Text style={styles.label}>Emergency Call: </Text>
-                        <TouchableOpacity
-                            onPress={() => Communications.phonecall(this.props.incident.emergency_call, true)}>
-                            <Text style={[styles.subTitle, styles.phone]}>{this.props.incident.emergency_call}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.row}>
-                        <Text style={styles.label}>Property Management Company: </Text>
-                        <TouchableOpacity
-                            onPress={() => Communications.phonecall(this.props.incident.property_management_company_phone, true)}>
-                            <Text
-                                style={[styles.subTitle, styles.phone]}>{this.props.incident.property_management_company_phone}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <MapView style={styles.map} showsUserLocation={true} followsUserLocation={true}
+            <View style={styles.container}>
+                <MapView style={styles.map} showsUserLocation={false} followsUserLocation={true}
                          initialRegion={{
                                             latitude: this.props.incident.location.lat,
                                             longitude: this.props.incident.location.lng,
                                             latitudeDelta: 0.05,
                                             longitudeDelta: 0.05}}>
                     <MapView.Marker
-                        coordinate={{latitude: this.props.incident.location.lat, longitude: this.props.incident.location.lng}}/>
+                       coordinate={{latitude: this.props.incident.location.lat, longitude: this.props.incident.location.lng}}>
+                    </MapView.Marker>
                 </MapView>
+                <DetailsPanel incident={this.props.incident} style={styles.detailsPanel}></DetailsPanel >
                 {this.renderButtons()}
-            </ScrollView>
+            </View>
 
         );
     }
 }
 
-let deviceWidth = Dimensions.get('window').width - 20;
+let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'rgb(250,250,250)',
         marginTop: 64,
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
-    details_container: {
-        marginBottom: 10,
-        backgroundColor: '#F8F8F8',
-        paddingBottom: 20
-
     },
     map: {
-        height: 200,
-        margin: 10,
-    },
-    phone: {
-        color: '#c9232d'
+        height: deviceHeight - 20,
     },
     images: {
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
     image: {
-        // flex: 1,
         width: deviceWidth / 3,
         height: deviceWidth / 3,
         borderWidth: 1,
         borderColor: 'white',
         resizeMode: "cover"
     },
-    title: {
-        color: 'black',
-        fontSize: 16,
-        lineHeight: 25,
-        marginTop: 30,
-    },
     subTitle: {
-        fontSize: 16,
-        lineHeight: 25,
-    },
-    label: {
-        fontWeight: 'bold',
         fontSize: 16,
         lineHeight: 25,
     },
@@ -218,11 +171,13 @@ const styles = StyleSheet.create({
     },
     btn: {
         flex: 1,
-        backgroundColor: '#4DB623',
+        backgroundColor: '#EE8380',
         height: 40,
         width: 100,
-        borderRadius: 5,
-        margin: 10,
+        borderRadius: 20,
+        marginLeft: 10,
+        marginRight: 10,
+        marginBottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -233,11 +188,12 @@ const styles = StyleSheet.create({
     },
     resolveBtn: {
         flex: 1,
-        backgroundColor: '#4DB623',
+        backgroundColor: '#EE8380',
         width: deviceWidth,
         height: 40,
-        borderRadius: 5,
-        margin: 10,
+        borderRadius: 20,
+        marginLeft: 10,
+        marginRight: 10,
         justifyContent: 'center',
         alignItems: 'center',
     }
