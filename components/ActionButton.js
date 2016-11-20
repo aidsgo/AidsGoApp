@@ -107,7 +107,7 @@ let deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     btn: {
         position: 'absolute',
-        width: deviceWidth - 80,
+        width: deviceWidth - 85,
         right: 40,
         bottom: 20,
         height: 42,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold'
     },
 
