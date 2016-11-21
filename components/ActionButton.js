@@ -25,7 +25,7 @@ class ActionButton extends Component {
         if (this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
             return (
                 <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id);}}>
+                                  onPress={() => {this.props.onResolveBtnPressed();}}>
                     <Text style={styles.btnText}>Resolve</Text>
                 </TouchableOpacity>
             )

@@ -17,6 +17,28 @@ import {Actions} from 'react-native-router-flux'
 class IncidentDetails extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showImageUpload: false
+        }
+    }
+
+    onResolveBtnPressed() {
+        this.setState({showImageUpload: true})
+    }
+
+    content() {
+        if (this.state.showImageUpload) {
+            return (
+                <ImageUpload {...this.props}/>
+            )
+        } else {
+            return (
+                <View>
+                    <DetailsPanel incident={this.props.incident}/>
+                    <ActionButton {...this.props} onResolveBtnPressed={this.onResolveBtnPressed.bind(this)}/>
+                </View>
+            )
+        }
     }
 
     render() {
@@ -31,9 +53,7 @@ class IncidentDetails extends Component {
                     </TouchableOpacity>
                 </View>
                 <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng}/>
-                <DetailsPanel incident={this.props.incident}/>
-                <ActionButton {...this.props}/>
-                <ImageUpload {...this.props}/>
+                {this.content()}
             </View>
         );
     }
