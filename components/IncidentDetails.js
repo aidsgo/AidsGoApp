@@ -10,6 +10,7 @@ import {
 import Map from '../components/Map'
 import DetailsPanel from '../components/DetailsPanel'
 import ActionButton from '../components/ActionButton'
+import ImageUpload from '../components/ImageUpload'
 import Icon from 'react-native-vector-icons/Ionicons'
 import {Actions} from 'react-native-router-flux'
 
@@ -32,6 +33,7 @@ class IncidentDetails extends Component {
                 <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng}/>
                 <DetailsPanel incident={this.props.incident}/>
                 <ActionButton {...this.props}/>
+                <ImageUpload {...this.props}/>
             </View>
         );
     }

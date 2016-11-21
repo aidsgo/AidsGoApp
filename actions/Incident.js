@@ -76,10 +76,10 @@ export const resolveIncident = (incidentId, userId) => {
     }
 };
 
-export const uploadImage = (id, image) => {
+export const uploadImage = (incidentId, image) => {
     return {
         type: UPLOAD_IMAGE,
-        id: id,
+        incidentId: incidentId,
         image: image
     }
 };

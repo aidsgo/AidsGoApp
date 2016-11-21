@@ -16,14 +16,9 @@ const incidents = (state = {}, action) => {
             const resolvedIncident = Object.assign({}, state[action.incidentId], {resolved: true});
             return Object.assign({}, state, {[action.incidentId]: resolvedIncident});
         case UPLOAD_IMAGE:
-            return state.map(incident => {
-                if (incident.id !== action.id) {
-                    return incident;
-                }
-                return Object.assign({}, incident, {
-                    images: [...incident.images, action.image]
-                })
-            });
+            const oldImages = state[action.incidentId].images || [];
+            const incidentWithNewImages = Object.assign({}, state[action.incidentId], {images: [...oldImages, action.image]});
+            return Object.assign({}, state, {[action.incidentId]: incidentWithNewImages});
         default:
             return state
     }
