@@ -65,7 +65,7 @@ class ImageUpload extends Component {
                 </View>
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id);}}>
-                    <Text style={styles.btnText}>Resolve</Text>
+                    <Text style={styles.btnText}>Done</Text>
                 </TouchableOpacity>
             </View>
         )
