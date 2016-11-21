@@ -6,6 +6,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IncidentListContainer from './containers/IncidentListContainer';
 import IncidentDetailsContainer from './containers/IncidentDetailsContainer';
+import IncidentReviewContainer from './containers/IncidentReviewContainer';
 import HelpInstructionsContainer from './containers/HelpInstructionsListContainer';
 import Logo from './components/Logo';
 import Login from './components/Login';
@@ -34,6 +35,7 @@ class App extends Component {
                                title="Incidents nearby" hideNavBar={false}/>
 
                         <Scene key="incidentDetailsContainer" component={IncidentDetailsContainer} hideNavBar={true}/>
+                        <Scene key="incidentReview" component={IncidentReviewContainer} hideNavBar={true}/>
 
                         <Scene key="helpInstructionsList" component={HelpInstructionsContainer}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}

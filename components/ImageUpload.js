@@ -9,6 +9,7 @@ import {
     Platform
 } from 'react-native'
 
+import {Actions} from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -64,7 +65,7 @@ class ImageUpload extends Component {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id);}}>
+                                  onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id); Actions.incidentReview({incident: this.props.incident})}}>
                     <Text style={styles.btnText}>Done</Text>
                 </TouchableOpacity>
             </View>
