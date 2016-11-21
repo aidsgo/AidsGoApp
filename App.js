@@ -30,7 +30,7 @@ class App extends Component {
                         <Scene key="aigsGoLogin" component={Login} hideNavBar={true}/>
 
                         <Scene key="incidentListContainer" component={IncidentListContainer} type={'reset'}
-                               navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
+                               navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0, height: 60}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
                                title="Incidents nearby" hideNavBar={false}/>
 

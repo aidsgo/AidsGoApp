@@ -11,6 +11,7 @@
     "react-native-communications": "1.0.1",
     "react-native-image-picker": "^0.21.5",
     "react-native-jpush": "^1.0.9",
+    "react-native-linear-gradient": "1.5.15",
     "react-native-maps": "^0.7.1",
     "react-native-router-flux": "^3.35.0",
     "react-native-vector-icons": "^2.1.0",

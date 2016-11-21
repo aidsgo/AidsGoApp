@@ -1,6 +1,7 @@
 package com.aidsgo;
 
 import com.facebook.react.ReactActivity;
+import com.BV.LinearGradient.LinearGradientPackage;
 import cn.reactnative.modules.jpush.JPushPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.airbnb.android.react.maps.MapsPackage;

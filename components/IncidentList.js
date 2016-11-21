@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'rgb(250,250,250)',
-        marginTop: 64
+        marginTop: 60
     },
     tabRow: {
         flexDirection: 'row',
