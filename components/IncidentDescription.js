@@ -13,6 +13,18 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 
 class IncidentDescription extends Component {
+    generateTimeString = (time) => {
+        const oneDay = 24 * 60 * 60 * 1000;
+        const timeRegex = new RegExp('(\\d+:\\d+:\\d+ (A|a|P|p)(M|m))');
+        const timeInterval = new Date().getTime() - new Date(time).getTime();
+        if(timeInterval > oneDay) {
+            const dayCounter = Math.floor(timeInterval / oneDay);
+            return `${dayCounter} 天前`
+        } else {
+            return timeRegex.exec(new Date(time).toLocaleTimeString('en-US'))[0];
+        }
+    };
+
     render() {
         const iconName = this.props.incident.resolved ? 'check' : 'exclamation';
         return (
@@ -24,7 +36,7 @@ class IncidentDescription extends Component {
                 <View style={styles.details}>
                     <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}>
                         <IonIcon style={{color: "#545960"}} name='md-time' size={22}/>
-                        <Text style={{fontSize: 14, marginTop: 2, paddingLeft: 10}}>{this.props.incident.time.toLocaleString()}</Text>
+                        <Text style={{fontSize: 14, marginTop: 2, paddingLeft: 10}}>{this.generateTimeString(this.props.incident.time)}</Text>
                     </View>
                     <View>
                         <Text style={{fontSize: 14}}>
@@ -63,7 +75,7 @@ const styles = StyleSheet.create({
     },
     indicator: {
         width: 40,
-        backgroundColor: '#F57D7A',
+        backgroundColor: '#F07D7A',
         justifyContent: 'center',
         alignItems: 'center'
     },
