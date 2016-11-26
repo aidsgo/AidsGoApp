@@ -95,6 +95,10 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        manifestPlaceholders = [
+            JPush_APPID: "7ae6d033056378bf5f352bae",   //在此修改JPush的APPID
+            APP_CHANNEL: "Goggle Play"      //应用渠道号
+        ]
     }
     splits {
         abi {
@@ -129,7 +133,7 @@ dependencies {
     compile project(':react-native-linear-gradient')
     compile project(':react-native-jpush')
     compile project(':react-native-image-picker')
-    compile project(':react-native-maps')
+    compile 'com.airbnb.android:react-native-maps:0.7.1'
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
