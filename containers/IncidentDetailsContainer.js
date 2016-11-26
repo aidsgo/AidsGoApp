@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {acceptIncident, resolveIncident, uploadImage} from '../actions/Incident'
+import {acceptIncident, resolveIncident, uploadImage,setMyCurrentLocation} from '../actions/Incident'
 import IncidentDetails from '../components/IncidentDetails'
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,6 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onImageUpload: (incidentId, image) => {
             dispatch(uploadImage(incidentId, image))
+        },
+        setMyCurrentLocation: ()=>{
+            dispatch(setMyCurrentLocation())
         }
     }
 };

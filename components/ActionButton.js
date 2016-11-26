@@ -11,6 +11,16 @@ import {
 
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
+import TimerMixin from 'react-timer-mixin';
+
+import wilddog from  'wilddog';
+var config = {
+    authDomain: "aidsgo.wilddog.com",
+    syncURL: "https://aidsgo.wilddogio.com"
+};
+wilddog.initializeApp(config);
+let ref = wilddog.sync().ref("/incidents");
+
 
 class ActionButton extends Component {
     constructor(props) {
@@ -71,6 +81,18 @@ class ActionButton extends Component {
         }
     }
 
+    getData(){
+        ref.on('value', function(snapshot, error) {
+            if (error == null) {
+                const testdata= snapshot.val();
+                console.log(snapshot.key());
+                console.log(snapshot.val().user1);
+            } else {
+                console.log(error);
+            }
+        })
+    }
+
     showImage() {
         if (this.props.incident.taken) {
             return (
@@ -81,6 +103,8 @@ class ActionButton extends Component {
             )
         }
     }
+
+
 
     render() {
         if (this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
@@ -93,7 +117,7 @@ class ActionButton extends Component {
         } else if (!this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
             return (
                 <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onIncidentAccept(this.props.incident.id, this.props.user.id);}}>
+                                  onPress={() => {this.getData();}}>
                     <Text style={styles.btnText}>Volunteer</Text>
                 </TouchableOpacity>
             )

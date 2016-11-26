@@ -1,8 +1,17 @@
 import {
     ACCEPT_INCIDENT_REQUEST, ACCEPT_INCIDENT_SUCCESS, ACCEPT_INCIDENT_FAILURE,
     RESOLVE_INCIDENT_REQUEST, RESOLVE_INCIDENT_SUCCESS, RESOLVE_INCIDENT_FAILURE,
-    UPLOAD_IMAGE
+    UPLOAD_IMAGE,SET_MY_CURRENT_LOC,GET_CUURENT_LOCS_STATUS
 } from '../actions/ActionTypes'
+
+import wilddog from  'wilddog';
+var config = {
+    authDomain: "aidsgo.wilddog.com",
+    syncURL: "https://aidsgo.wilddogio.com"
+};
+wilddog.initializeApp(config);
+let ref = wilddog.sync().ref();
+
 
 function acceptIncidentRequest() {
     return {
@@ -45,6 +54,31 @@ function resolveIncidentFailure(error) {
         error: error
     };
 }
+
+function setMyCurrentLoction(){
+    return{
+        type:SET_MY_CURRENT_LOC
+    }
+}
+
+function testSet(){
+    ref.set({
+        "incidents":{
+            "user1":{
+                "lan":1 + Math.round(Math.random()*10),
+                "log":2 + Math.round(Math.random()*10)
+            }
+        }
+    })
+
+}
+
+export const setMyCurrentLocation = () => {
+    return function (dispatch) {
+        dispatch(setMyCurrentLoction());
+        return setInterval(testSet,3000)
+    }
+};
 
 export const acceptIncident = (incidentId, userId) => {
     return function (dispatch) {
