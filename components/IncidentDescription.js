@@ -17,6 +17,7 @@ class IncidentDescription extends Component {
         const oneDay = 24 * 60 * 60 * 1000;
         const timeRegex = new RegExp('(\\d+:\\d+:\\d+ (A|a|P|p)(M|m))');
         const timeInterval = new Date().getTime() - new Date(time).getTime();
+        const dateInterval = new Date().getDate() - new Date(time).getDate();
         if(timeInterval > oneDay) {
             const dayCounter = Math.floor(timeInterval / oneDay);
             return `${dayCounter} 天前`

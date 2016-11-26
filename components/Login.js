@@ -10,6 +10,10 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import {crypto} from 'react-native-crypto';
+
+import Modal from './Modal'
+
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
@@ -17,25 +21,47 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            signedIn: false
+            errorModal: false,
+            phoneNumber: '',
+            password: ''
         };
     }
 
-    componentDidUpdate() {
-        if (this.state.signedIn) {
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.user.signedIn) {
             Actions.incidentListContainer();
+        } else if (!nextProps.user.signedIn) {
+            this.toggleErrorModal();
         }
     }
 
-    componentDidMount() {
-        if (this.state.signedIn) {
-            Actions.incidentListContainer();
-        }
+    toggleErrorModal() {
+        this.setState({
+            errorModal: !this.state.errorModal
+        });
+    }
+
+    errorModal() {
+        const config = {content: '用户名或密码不正确!', toggleErrorModal: () => this.toggleErrorModal()};
+        return <Modal config={config}/>
     }
 
     login() {
+        const {phoneNumber, password} = this.state;
+        const psw= crypto.createHash('md5').update(password).digest('hex');
+        console.log('psw', psw);
+        this.props.userSignUp(phoneNumber, psw);
+    }
+
+    handlePhone(value) {
         this.setState({
-            signedIn: true
+            phoneNumber: value
+        });
+    }
+
+    handlePassword(value) {
+        this.setState({
+            password: value
         });
     }
 
@@ -50,14 +76,18 @@ class Login extends Component {
                         <View style={[styles.loginput, styles.size, styles.shadow, styles.username]}>
                             <Image source={require('./../public/img/user.png')} style={styles.icon}/>
                             <View style={styles.upright}/>
-                            <TextInput style={styles.input} placeholder='  电    话'
-                                       placeholderTextColor='white'></TextInput>
+                            <TextInput style={styles.input} placeholder='  电    话' placeholderTextColor='white'
+                                       onChangeText ={(value) => {this.handlePhone(value)}}>
+
+                            </TextInput>
                         </View>
                         <View style={[styles.loginput, styles.size, styles.shadow, styles.password]}>
                             <Image source={require('./../public/img/lock.png')} style={styles.icon}/>
                             <View style={styles.upright}/>
-                            <TextInput style={styles.input} placeholder='  密    码'
-                                       placeholderTextColor='white'></TextInput>
+                            <TextInput style={styles.input} placeholder='  密    码' placeholderTextColor='white'
+                                       onChangeText ={(value) => {this.handlePassword(value)}}>
+
+                            </TextInput>
                         </View>
                         <TouchableOpacity style={[styles.loginput, styles.size, styles.shadow, styles.button]}
                                           onPress={() => this.login()}>
@@ -66,6 +96,7 @@ class Login extends Component {
                         <View style={styles.forget}>
                             <Text style={styles.tabText}>忘记密码?</Text>
                         </View>
+                        {this.state.errorModal ? this.errorModal() : null}
                     </View>
                 </Image>
             </View>
@@ -150,7 +181,8 @@ const styles = StyleSheet.create({
         width: width / 2,
         height: 30,
         marginTop: 5,
-        backgroundColor: 'rgba(255,255,255,0.4)'
+        backgroundColor: 'rgba(255,255,255,0.4)',
+        color: '#53585F'
     },
     button: {
         marginTop: 30,
