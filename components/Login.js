@@ -10,7 +10,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import {crypto} from 'react-native-crypto';
+import md5 from "react-native-md5";
 
 import Modal from './Modal'
 
@@ -48,9 +48,7 @@ class Login extends Component {
 
     login() {
         const {phoneNumber, password} = this.state;
-        const psw= crypto.createHash('md5').update(password).digest('hex');
-        console.log('psw', psw);
-        this.props.userSignUp(phoneNumber, psw);
+        this.props.userSignUp(phoneNumber, md5.str_md5(password));
     }
 
     handlePhone(value) {

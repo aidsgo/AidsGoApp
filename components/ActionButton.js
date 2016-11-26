@@ -22,17 +22,18 @@ class ActionButton extends Component {
     }
 
     render() {
-        if (this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
+        const {incident, user, onResolveBtnPressed, onIncidentAccept} = this.props;
+        if (this.isTakenByMe(incident, user.profile.id) && !this.isResolved(incident)) {
             return (
                 <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onResolveBtnPressed();}}>
+                                  onPress={() => {onResolveBtnPressed();}}>
                     <Text style={styles.btnText}>Resolve</Text>
                 </TouchableOpacity>
             )
-        } else if (!this.isTakenByMe(this.props.incident, this.props.user.id) && !this.isResolved(this.props.incident)) {
+        } else if (!this.isTakenByMe(incident, user.profile.id) && !this.isResolved(incident)) {
             return (
                 <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onIncidentAccept(this.props.incident.id, this.props.user.id);}}>
+                                  onPress={() => {onIncidentAccept(incident.id, user.profile.id, user.profile.token);}}>
                     <Text style={styles.btnText}>Volunteer</Text>
                 </TouchableOpacity>
             )

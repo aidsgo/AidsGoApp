@@ -22,10 +22,19 @@ function requestOnGoingIncidentsFail(error) {
     };
 }
 
-export function fetchOnGoingIncidents() {
+export function fetchOnGoingIncidents(userToken) {
+    const config = ({
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': userToken
+        },
+        credentials: 'same-origin'
+    });
     return function (dispatch) {
         dispatch(requestOnGoingIncidents());
-        return fetch('http://localhost:3000/emergencies?name=name&volunteer_location={lat:34.256403,lng:108.953661}')
+        return fetch('http://localhost:3000/emergencies?name=name&volunteer_location={lat:34.256403,lng:108.953661}', config)
             .then(response => {
                 if (response.status === 200) {
                     return response.json();

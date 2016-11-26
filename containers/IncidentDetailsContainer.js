@@ -11,11 +11,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onIncidentAccept: (incidentId, userId) => {
-            dispatch(acceptIncident(incidentId, userId))
+        onIncidentAccept: (incidentId, userId, userToken) => {
+            dispatch(acceptIncident(incidentId, userId, userToken))
         },
-        onIncidentResolve: (incidentId, userId) => {
-            dispatch(resolveIncident(incidentId, userId))
+        onIncidentResolve: (incidentId, userId, userToken) => {
+            dispatch(resolveIncident(incidentId, userId, userToken))
         },
         onImageUpload: (incidentId, image) => {
             dispatch(uploadImage(incidentId, image))
