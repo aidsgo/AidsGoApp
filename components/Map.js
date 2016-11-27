@@ -14,40 +14,31 @@ class Map extends Component {
 
     render() {
         return (
-            <View style ={styles.container}>
-                <MapView style={styles.map} showsUserLocation={true} followsUserLocation={true}
-                         initialRegion={{
+            <MapView style={styles.map} showsUserLocation={true} followsUserLocation={true}
+                     initialRegion={{
                                             latitude: this.props.lat,
                                             longitude: this.props.lng,
                                             latitudeDelta: 0.05,
                                             longitudeDelta: 0.05}}>
-                    <MapView.Marker coordinate={{latitude: this.props.lat, longitude: this.props.lng}}>
-                        <View>
-                            <View style={styles.circleLarge}></View>
-                            <View style={styles.circleMiddle}></View>
-                            <View style={styles.circleSmall}></View>
-                            <View style={styles.overlayLarge}></View>
-                            <View style={styles.overlayMiddle}></View>
-                            <View style={styles.overlaySmall}></View>
-                        </View>
-                    </MapView.Marker>
-                </MapView>
-            </View>
-
+                <MapView.Marker coordinate={{latitude: this.props.lat, longitude: this.props.lng}}>
+                    <View>
+                        <View style={styles.circleLarge}></View>
+                        <View style={styles.circleMiddle}></View>
+                        <View style={styles.circleSmall}></View>
+                        <View style={styles.overlayLarge}></View>
+                        <View style={styles.overlayMiddle}></View>
+                        <View style={styles.overlaySmall}></View>
+                    </View>
+                </MapView.Marker>
+            </MapView>
         );
     }
 }
 
 const deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
-    container:{
-        ...StyleSheet.absoluteFillObject,
-        height: deviceHeight,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
-    },
     map: {
-        ...StyleSheet.absoluteFillObject
+        height: deviceHeight
     },
     circleLarge: {
         position: 'absolute',
