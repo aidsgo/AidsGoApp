@@ -22,8 +22,9 @@ class IncidentList extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchOngoingIncidents();
-        this.props.fetchMineIncidents(this.props.user.id);
+        const {id, token} = this.props.user.profile;
+        this.props.fetchOngoingIncidents(token);
+        this.props.fetchMineIncidents(id, token);
     }
 
     visibleIncidents() {

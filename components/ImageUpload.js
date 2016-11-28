@@ -49,6 +49,7 @@ class ImageUpload extends Component {
     }
 
     render() {
+        const {incident, user, onIncidentResolve} = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.camera}>
@@ -56,7 +57,7 @@ class ImageUpload extends Component {
                 </View>
                 <View style={styles.imagesPanel}>
                     {
-                        (this.props.incident.images || []).map((image) => {
+                        (incident.images || []).map((image) => {
                             return <Image source={image} style={styles.itemLayout}/>
                         })
                     }
@@ -65,7 +66,7 @@ class ImageUpload extends Component {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btn}
-                                  onPress={() => {this.props.onIncidentResolve(this.props.incident.id, this.props.user.id); Actions.incidentReview({incident: this.props.incident})}}>
+                                  onPress={() => {onIncidentResolve(incident.id, user.profile.id, user.profile.token); Actions.incidentReview({incident: incident})}}>
                     <Text style={styles.btnText}>Done</Text>
                 </TouchableOpacity>
             </View>

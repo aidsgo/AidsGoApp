@@ -46,10 +46,19 @@ function resolveIncidentFailure(error) {
     };
 }
 
-export const acceptIncident = (incidentId, userId) => {
+export const acceptIncident = (incidentId, userId, userToken) => {
+    const config = ({
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': userToken
+        },
+        credentials: 'same-origin'
+    });
     return function (dispatch) {
         dispatch(acceptIncidentRequest());
-        return fetch(`http://localhost:3000/emergencies/${incidentId}/add/${userId}`, {method: 'PUT'})
+        return fetch(`http://localhost:3000/volunteers/${userId}/accept/${incidentId}/`, config)
             .then(response => {
                 if (response.ok) {
                     return dispatch(acceptIncidentSuccess(incidentId, userId))
@@ -61,10 +70,20 @@ export const acceptIncident = (incidentId, userId) => {
     }
 };
 
-export const resolveIncident = (incidentId, userId) => {
+export const resolveIncident = (incidentId, userId, userToken) => {
+    const config = ({
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': userToken
+        },
+        credentials: 'same-origin'
+    });
+
     return function (dispatch) {
         dispatch(resolveIncidentRequest());
-        return fetch(`http://localhost:3000/emergencies/${incidentId}/resolve/${userId}`, {method: 'PUT'})
+        return fetch(`http://localhost:3000/volunteers/${userId}/resolve/${incidentId}/`, config)
             .then(response => {
                 if (response.ok) {
                     return dispatch(resolveIncidentSuccess(incidentId, userId))

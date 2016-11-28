@@ -10,6 +10,10 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import md5 from "react-native-md5";
+
+import Modal from './Modal';
+
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 
@@ -17,25 +21,52 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            signedIn: false
+            action: 'logIn',
+            errorModal: false,
+            phoneNumber: '',
+            password: ''
         };
     }
 
-    componentDidUpdate() {
-        if (this.state.signedIn) {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user.signedIn) {
             Actions.incidentListContainer();
+        } else if (!nextProps.user.signedIn) {
+            this.toggleErrorModal();
         }
     }
 
-    componentDidMount() {
-        if (this.state.signedIn) {
-            Actions.incidentListContainer();
-        }
+    toggleAction() {
+        this.setState({
+            action: this.state.action === 'signUp' ? 'logIn' : 'signUp'
+        });
+    }
+
+    toggleErrorModal() {
+        this.setState({
+            errorModal: !this.state.errorModal
+        });
+    }
+
+    errorModal() {
+        const config = {content: '用户名或密码不正确!', toggleErrorModal: () => this.toggleErrorModal()};
+        return <Modal config={config}/>
     }
 
     login() {
+        const {action, phoneNumber, password} = this.state;
+        this.props.userEnter(action, phoneNumber, md5.str_md5(password));
+    }
+
+    handlePhone(value) {
         this.setState({
-            signedIn: true
+            phoneNumber: value
+        });
+    }
+
+    handlePassword(value) {
+        this.setState({
+            password: value
         });
     }
 
@@ -47,25 +78,40 @@ class Login extends Component {
                         <View style={[styles.circle, styles.shadow]}>
                             <Image style={styles.avatar} source={require('./../public/img/avatar.png')}/>
                         </View>
-                        <View style={[styles.loginput, styles.size, styles.shadow, styles.username]}>
-                            <Image source={require('./../public/img/user.png')} style={styles.icon}/>
-                            <View style={styles.upright}/>
-                            <TextInput style={styles.input} placeholder='  电    话'
-                                       placeholderTextColor='white'></TextInput>
+                        <View style={styles.actionToggle}>
+                            <TouchableOpacity style={[styles.leftMask, this.state.action === 'signUp' ? styles.selected : {}]} onPress={() => this.toggleAction()}>
+                                <Text style={styles.actionText}>注   册</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.rightMask, this.state.action === 'logIn' ? styles.selected : {}]} onPress={() => this.toggleAction()}>
+                                <Text style={styles.actionText}>登   录</Text>
+                            </TouchableOpacity>
                         </View>
-                        <View style={[styles.loginput, styles.size, styles.shadow, styles.password]}>
-                            <Image source={require('./../public/img/lock.png')} style={styles.icon}/>
-                            <View style={styles.upright}/>
-                            <TextInput style={styles.input} placeholder='  密    码'
-                                       placeholderTextColor='white'></TextInput>
+                        <View style={styles.halfMask}>
+                            <View style={[styles.loginput, styles.size, styles.shadow, styles.username]}>
+                                <Image source={require('./../public/img/user.png')} style={styles.icon}/>
+                                <View style={styles.upright}/>
+                                <TextInput style={styles.input} placeholder='  电    话' placeholderTextColor='white'
+                                           onChangeText={(value) => {this.handlePhone(value)}}>
+
+                                </TextInput>
+                            </View>
+                            <View style={[styles.loginput, styles.size, styles.shadow, styles.password]}>
+                                <Image source={require('./../public/img/lock.png')} style={styles.icon}/>
+                                <View style={styles.upright}/>
+                                <TextInput style={styles.input} placeholder='  密    码' placeholderTextColor='white'
+                                           onChangeText={(value) => {this.handlePassword(value)}}>
+
+                                </TextInput>
+                            </View>
+                            <TouchableOpacity style={[styles.loginput, styles.size, styles.shadow, styles.button]}
+                                              onPress={() => this.login()}>
+                                <Text style={styles.loginText}>{this.state.action === 'logIn' ? '登      录' : '注      册'}</Text>
+                            </TouchableOpacity>
+                            {this.state.action === 'logIn' ? <View style={styles.forget}>
+                                <Text style={styles.tabText}>忘记密码?</Text>
+                            </View> : null}
                         </View>
-                        <TouchableOpacity style={[styles.loginput, styles.size, styles.shadow, styles.button]}
-                                          onPress={() => this.login()}>
-                            <Text style={styles.loginText}>登       录</Text>
-                        </TouchableOpacity>
-                        <View style={styles.forget}>
-                            <Text style={styles.tabText}>忘记密码?</Text>
-                        </View>
+                        {this.state.errorModal ? this.errorModal() : null}
                     </View>
                 </Image>
             </View>
@@ -79,13 +125,45 @@ const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
         resizeMode: 'cover',
-        width:width,
-        height:height
+        width: width,
+        height: height
     },
     mask: {
         width: width,
         height: height,
         backgroundColor: 'rgba(0,0,0,0.2)'
+    },
+    halfMask: {
+        width: width,
+        height: height/2,
+        backgroundColor: 'rgba(0,0,0,0.3)'
+    },
+    actionToggle: {
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+        flexDirection:'row',
+        marginTop: 40,
+        borderBottomColor: 'rgba(0,0,0,0.1)',
+        borderBottomWidth: 0.5
+    },
+    leftMask: {
+        width: width/2,
+        height: 40,
+        backgroundColor: 'rgba(0,0,0,0.2)'
+    },
+    rightMask: {
+        width: width/2,
+        height: 40,
+        backgroundColor: 'rgba(0,0,0,0.2)'
+    },
+    selected: {
+        backgroundColor: 'rgba(0,0,0,0.3)'
+    },
+    actionText: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 20,
+        paddingTop: 6
     },
     shadow: {
         shadowColor: 'black',
@@ -103,8 +181,8 @@ const styles = StyleSheet.create({
         borderRadius: 130 / 2,
         backgroundColor: 'white',
 
-        alignItems:'center',
-        justifyContent:'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     avatar: {
         width: 100,
@@ -122,7 +200,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.5)'
     },
     username: {
-        marginTop: height / 6
+        marginTop: height / 14
     },
     password: {
         marginTop: 10
@@ -150,7 +228,8 @@ const styles = StyleSheet.create({
         width: width / 2,
         height: 30,
         marginTop: 5,
-        backgroundColor: 'rgba(255,255,255,0.4)'
+        backgroundColor: 'rgba(255,255,255,0.4)',
+        color: '#53585F'
     },
     button: {
         marginTop: 30,
@@ -161,8 +240,8 @@ const styles = StyleSheet.create({
         height: 40,
         alignSelf: 'center',
         borderBottomColor: 'white',
-        borderBottomWidth: 1
-
+        borderBottomWidth: 1,
+        marginBottom: 20
     },
     loginText: {
         alignSelf: 'center',

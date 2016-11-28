@@ -9,7 +9,7 @@ import IncidentDetailsContainer from './containers/IncidentDetailsContainer';
 import IncidentReviewContainer from './containers/IncidentReviewContainer';
 import HelpInstructionsContainer from './containers/HelpInstructionsListContainer';
 import Logo from './components/Logo';
-import Login from './components/Login';
+import UserContainer from './containers/UserContainer';
 import HelpInstructionDetail from './components/HelpInstrcuctionDetail'
 
 const RouterWithRedux = connect()(Router);
@@ -27,7 +27,7 @@ class App extends Component {
                     <Scene key="root">
                         <Scene key="logo" component={Logo} initial={true} hideNavBar={true}/>
 
-                        <Scene key="aigsGoLogin" component={Login} hideNavBar={true}/>
+                        <Scene key="aigsGoLogin" component={UserContainer} hideNavBar={true}/>
 
                         <Scene key="incidentListContainer" component={IncidentListContainer} type={'reset'}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0, height: 60}}

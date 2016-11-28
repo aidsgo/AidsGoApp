@@ -22,10 +22,19 @@ function requestMineIncidentsFail(error) {
     };
 }
 
-export function fetchMineIncidents(userId) {
+export function fetchMineIncidents(userId, userToken) {
+    const config = ({
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': userToken
+        },
+        credentials: 'same-origin'
+    });
     return function (dispatch) {
         dispatch(requestMineIncidents());
-        return fetch(`http://localhost:3000/emergencies/volunteers/${userId}`)
+        return fetch(`http://localhost:3000/volunteers/${userId}/emergencies`, config)
             .then(response => {
                 if(response.status === 200) {
                     return response.json();
