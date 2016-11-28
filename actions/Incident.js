@@ -58,7 +58,7 @@ export const acceptIncident = (incidentId, userId, userToken) => {
     });
     return function (dispatch) {
         dispatch(acceptIncidentRequest());
-        return fetch(`http://localhost:3000/emergencies/${incidentId}/add/${userId}`, config)
+        return fetch(`http://localhost:3000/volunteers/${userId}/accept/${incidentId}/`, config)
             .then(response => {
                 if (response.ok) {
                     return dispatch(acceptIncidentSuccess(incidentId, userId))
@@ -83,7 +83,7 @@ export const resolveIncident = (incidentId, userId, userToken) => {
 
     return function (dispatch) {
         dispatch(resolveIncidentRequest());
-        return fetch(`http://localhost:3000/emergencies/${incidentId}/resolve/${userId}`, config)
+        return fetch(`http://localhost:3000/volunteers/${userId}/resolve/${incidentId}/`, config)
             .then(response => {
                 if (response.ok) {
                     return dispatch(resolveIncidentSuccess(incidentId, userId))

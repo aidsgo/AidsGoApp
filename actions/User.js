@@ -1,27 +1,26 @@
-import {SIGNUP_SUCCESS, SIGNUP_FAILURE, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/ActionTypes';
+import {ENTER_SUCCESS, ENTER_FAILURE} from '../actions/ActionTypes';
 
-function signUpSuccess(userInfo) {
-    console.log('signUpSuccess', userInfo);
+function enterSuccess(userInfo) {
     return {
-        type: SIGNUP_SUCCESS,
+        type: ENTER_SUCCESS,
         userInfo: userInfo
     };
 }
 
-function signUpFailure() {
+function enterFailure() {
     return {
-        type: SIGNUP_FAILURE
+        type: ENTER_FAILURE
     };
 }
 
-export const userSignUp = (phoneNumber, password) => {
+export const userEnter = (action, phoneNumber, password) => {
+    const fetchURL = (action === 'logIn') ? 'http://localhost:3000/volunteers/login' : 'http://localhost:3000/volunteers/sign_up';
     const body = JSON.stringify(
         {
-            "phoneNumber": phoneNumber,
+            "phone_number": phoneNumber,
             "password": password
         }
     );
-
     const config = ({
         method: 'POST',
         headers: {
@@ -31,11 +30,12 @@ export const userSignUp = (phoneNumber, password) => {
         credentials: 'same-origin',
         body
     });
+
     return function (dispatch) {
-        return fetch(`http://localhost:3000/volunteer/sign_up`, config)
+        return fetch(fetchURL, config)
             .then(checkStatus).then(parseJson, redirect)
-            .then(json => dispatch(signUpSuccess(json)))
-            .catch(error => dispatch(signUpFailure(error)));
+            .then(json => dispatch(enterSuccess(json)))
+            .catch(error => dispatch(enterFailure(error)));
     }
 };
 
@@ -56,14 +56,5 @@ const parseJson = (response) => {
 };
 
 const redirect = (error) => {
-    const errorResponse = error.response;
-    //if(errorResponse && errorResponse.status === 401) {
-    //    errorResponse.json().then((data) => {
-    //        if(data && data.login_url) {
-    //            window.location.href = data.login_url;
-    //        }
-    //    });
-    //}
-
     throw error;
 };

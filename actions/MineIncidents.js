@@ -34,7 +34,7 @@ export function fetchMineIncidents(userId, userToken) {
     });
     return function (dispatch) {
         dispatch(requestMineIncidents());
-        return fetch(`http://localhost:3000/emergencies/volunteers/${userId}`, config)
+        return fetch(`http://localhost:3000/volunteers/${userId}/emergencies`, config)
             .then(response => {
                 if(response.status === 200) {
                     return response.json();
