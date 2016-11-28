@@ -1,11 +1,14 @@
 import {
-    RECEIVE_ONGOING_INCIDENTS, RECEIVE_MINE_INCIDENTS, ACCEPT_INCIDENT_SUCCESS, RESOLVE_INCIDENT_SUCCESS, UPLOAD_IMAGE
+    RECEIVE_ONGOING_INCIDENTS, VOLUNTEERS_CHANGED_FOR_INCIDENT, RECEIVE_MINE_INCIDENTS, ACCEPT_INCIDENT_SUCCESS, RESOLVE_INCIDENT_SUCCESS, UPLOAD_IMAGE
 } from '../actions/ActionTypes'
 
 const incidents = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_ONGOING_INCIDENTS:
             return Object.assign({}, state, action.incidents);
+        case VOLUNTEERS_CHANGED_FOR_INCIDENT:
+            const incidentWithNewVolunteers = Object.assign({}, state[action.incidentId], {taken: action.volunteers});
+            return Object.assign({}, state, {[action.incidentId]: incidentWithNewVolunteers});
         case RECEIVE_MINE_INCIDENTS:
             return Object.assign({}, state, action.incidents);
         case ACCEPT_INCIDENT_SUCCESS:

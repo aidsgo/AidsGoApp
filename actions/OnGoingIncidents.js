@@ -8,10 +8,11 @@ function requestOnGoingIncidents() {
     };
 }
 
-function receiveOnGoingIncidents(incidents) {
+function receiveOnGoingIncidents(incidents, onIncidentVolunteersChangeCb) {
     return {
         type: RECEIVE_ONGOING_INCIDENTS,
-        incidents: incidents
+        incidents: incidents,
+        onIncidentVolunteersChangeCb: onIncidentVolunteersChangeCb
     };
 }
 
@@ -22,7 +23,7 @@ function requestOnGoingIncidentsFail(error) {
     };
 }
 
-export function fetchOnGoingIncidents(userToken) {
+export function fetchOnGoingIncidents(userToken, onIncidentVolunteersChangeCb) {
     const config = ({
         method: 'GET',
         headers: {
@@ -42,7 +43,7 @@ export function fetchOnGoingIncidents(userToken) {
                     throw response.status;
                 }
             })
-            .then(json => dispatch(receiveOnGoingIncidents(json)))
+            .then(json => dispatch(receiveOnGoingIncidents(json, onIncidentVolunteersChangeCb)))
             .catch(error => dispatch(requestOnGoingIncidentsFail(error)))
     }
 }

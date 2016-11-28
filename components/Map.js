@@ -3,6 +3,7 @@ import {
     StyleSheet,
     View,
     Dimensions,
+    Image
 } from 'react-native'
 
 import MapView from 'react-native-maps';
@@ -10,6 +11,20 @@ import MapView from 'react-native-maps';
 class Map extends Component {
     constructor(props) {
         super(props);
+    }
+
+    volunteers() {
+        let volunteersMarker = [];
+        this.props.volunteers.forEach((location, volunteerId) => {
+            if (location) {
+                volunteersMarker.push(
+                    <MapView.Marker coordinate={{latitude: location.lat, longitude: location.lng}} key={volunteerId}>
+                        <Image source={require('../public/img/leifeng-no-shadow.png')} style={{width: 30, height: 30}}/>
+                    </MapView.Marker>
+                )
+            }
+        });
+        return volunteersMarker;
     }
 
     render() {
@@ -30,6 +45,7 @@ class Map extends Component {
                         <View style={styles.overlaySmall}></View>
                     </View>
                 </MapView.Marker>
+                {this.volunteers()}
             </MapView>
         );
     }

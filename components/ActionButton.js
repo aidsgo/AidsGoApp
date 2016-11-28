@@ -14,7 +14,7 @@ class ActionButton extends Component {
     }
 
     isTakenByMe(incident, userId) {
-        return !!incident.taken.find(volunteerId => volunteerId === userId)
+        return incident.taken.has(userId)
     }
 
     isResolved(incident) {

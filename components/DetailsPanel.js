@@ -54,7 +54,7 @@ class DetailsPanel extends Component {
                 <ScrollView style={styles.panelContainer}>
                     <View style={styles.takenInfo}>
                         <Text>
-                            <Text style={styles.bold}>{this.props.incident.taken.length} person</Text>
+                            <Text style={styles.bold}>{this.props.incident.taken.size} person</Text>
                             <Text> have taken this incident!</Text>
                         </Text>
                     </View>

@@ -3,8 +3,12 @@ import {acceptIncident, resolveIncident, uploadImage} from '../actions/Incident'
 import IncidentDetails from '../components/IncidentDetails'
 
 const mapStateToProps = (state, ownProps) => {
+    let incident = Object.assign({}, state.incidents[ownProps.incident.id]);
+    incident.taken = new Map(incident.taken.map(volunteerId => {
+        return [volunteerId, state.volunteers[volunteerId]]
+    }));
     return {
-        incident: state.incidents[ownProps.incident.id],
+        incident: incident,
         user: state.user
     };
 };

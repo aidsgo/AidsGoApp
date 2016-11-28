@@ -1,8 +1,17 @@
 import {
     REQUEST_ONGOING_INCIDENTS, RECEIVE_ONGOING_INCIDENTS, REQUEST_ONGOING_INCIDENTS_FAIL, RESOLVE_INCIDENT_SUCCESS
 } from '../actions/ActionTypes'
+import wilddog from 'wilddog';
 
-const onGoingIncidents = (state = {isFetching: false, items: [], error: null}, action) => {
+var config = {
+    authDomain: "bestaidsgo.wilddog.com",
+    syncURL: "https://bestaidsgo.wilddogio.com/data/activeIncidents"
+};
+
+wilddog.initializeApp(config);
+let incidentsRef = wilddog.sync().ref();
+
+const onGoingIncidents = (state = {isFetching: false, items: [], refs: [], error: null}, action) => {
     switch (action.type) {
         case REQUEST_ONGOING_INCIDENTS:
             return Object.assign({}, state, {
@@ -10,10 +19,18 @@ const onGoingIncidents = (state = {isFetching: false, items: [], error: null}, a
                 error: null
             });
         case RECEIVE_ONGOING_INCIDENTS:
+            let incidentIds = Object.keys(action.incidents);
+
+            incidentIds.forEach(incidentId => {
+                incidentsRef.child(`${incidentId}/volunteers`).on("value", function (snapshot) {
+                    action.onIncidentVolunteersChangeCb(incidentId, snapshot.val());
+                });
+            });
+
             return Object.assign({}, state, {
                 isFetching: false,
                 error: null,
-                items: Object.keys(action.incidents)
+                items: incidentIds
             });
         case REQUEST_ONGOING_INCIDENTS_FAIL:
             return Object.assign({}, state, {
@@ -23,7 +40,7 @@ const onGoingIncidents = (state = {isFetching: false, items: [], error: null}, a
         case RESOLVE_INCIDENT_SUCCESS:
             const index = state.items.indexOf(action.incidentId);
             const newItems = [...state.items];
-            if(index >= 0) {
+            if (index >= 0) {
                 newItems.splice(index, 1);
             }
             return Object.assign({}, state, {items: newItems});

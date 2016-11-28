@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import {fetchMineIncidents} from '../actions/MineIncidents'
 import {fetchOnGoingIncidents} from '../actions/OnGoingIncidents'
+import {volunteerChangedForIncident, volunteerLocationChanged} from '../actions/Volunteers'
 import IncidentList from '../components/IncidentList'
 
 const mapStateToProps = (state, ownProps) => {
@@ -25,9 +26,17 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+    const onVolunteerLocationChangedCb = (volunteerId, location) => {
+        dispatch(volunteerLocationChanged(volunteerId, location))
+    };
+
+    const onIncidentVolunteersChangeCb = (incidentId, volunteers) => {
+        dispatch(volunteerChangedForIncident(incidentId, volunteers, onVolunteerLocationChangedCb))
+    };
+
     return {
         fetchOngoingIncidents: (userToken) => {
-            dispatch(fetchOnGoingIncidents(userToken))
+            dispatch(fetchOnGoingIncidents(userToken, fetchOnGoingIncidents(onIncidentVolunteersChangeCb)))
         },
         fetchMineIncidents: (userId, userToken) => {
             dispatch(fetchMineIncidents(userId, userToken))
