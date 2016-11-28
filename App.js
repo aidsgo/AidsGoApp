@@ -19,7 +19,30 @@ const store = compose(
     applyMiddleware(...middleware)
 )(createStore)(reducers);
 
+import wilddog from 'wilddog';
+
+var usersConfig = {
+    authDomain: "bestaidsgo.wilddog.com",
+    syncURL: "https://bestaidsgo.wilddogio.com/data/activeUsers"
+};
+
+wilddog.initializeApp(usersConfig);
+let usersRef = wilddog.sync().ref();
+
 class App extends Component {
+    componentDidMount() {
+        setInterval(() => {
+            navigator.geolocation.getCurrentPosition(position => {
+                usersRef.child(`${store.getState().user.id}`).set({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                })
+            }, error => {
+                console.log(JSON.stringify(error));
+            }, {enableHighAccuracy: true, timeout: 20000});
+        }, 3000);
+    }
+
     render() {
         return (
             <Provider store={store}>
