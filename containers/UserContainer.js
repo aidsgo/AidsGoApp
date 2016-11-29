@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {userEnter} from '../actions/User'
+import {userEnter, updateLocation} from '../actions/User'
 import Login from '../components/Login'
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         userEnter: (action, phoneNumber, password) => {
             dispatch(userEnter(action, phoneNumber, password))
+        },
+        updateLocation: (location) => {
+            dispatch(updateLocation(location))
         }
     }
 };

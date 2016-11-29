@@ -26,3 +26,4 @@ export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 
 export const ENTER_SUCCESS = 'ENTER_SUCCESS';
 export const ENTER_FAILURE = 'ENTER_FAILURE';
+export const UPDATE_LOCATION = 'UPDATE_LOCATION';

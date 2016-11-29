@@ -1,4 +1,4 @@
-import {ENTER_SUCCESS, ENTER_FAILURE} from '../actions/ActionTypes';
+import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION} from '../actions/ActionTypes';
 
 function enterSuccess(userInfo) {
     return {
@@ -12,6 +12,13 @@ function enterFailure() {
         type: ENTER_FAILURE
     };
 }
+
+export const updateLocation = (location) => {
+    return {
+        type: UPDATE_LOCATION,
+        location: location
+    }
+};
 
 export const userEnter = (action, phoneNumber, password) => {
     const fetchURL = (action === 'logIn') ? 'http://localhost:3000/volunteers/login' : 'http://localhost:3000/volunteers/sign_up';
