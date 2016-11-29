@@ -11,9 +11,13 @@ import {Actions} from 'react-native-router-flux';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
-import {generateTimeString} from './../helper/Utils';
+import moment from 'moment'
 
 class IncidentDescription extends Component {
+    generateTimeString = (time) => {
+        const IncidentTime = moment(time);
+        return IncidentTime.format('YYYY-MM-DD HH:MM')
+    };
 
     render() {
         const iconName = this.props.incident.resolved ? 'check' : 'exclamation';
@@ -26,7 +30,8 @@ class IncidentDescription extends Component {
                 <View style={styles.details}>
                     <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}>
                         <IonIcon style={{color: "#545960"}} name='md-time' size={22}/>
-                        <Text style={{fontSize: 14, marginTop: 2, paddingLeft: 10}}>{generateTimeString(this.props.incident.time)}</Text>
+                        <Text
+                            style={{fontSize: 14, marginTop: 2, paddingLeft: 10}}>{this.generateTimeString(this.props.incident.time)}</Text>
                     </View>
                     <View>
                         <Text style={{fontSize: 14}}>
