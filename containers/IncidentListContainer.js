@@ -35,8 +35,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 
     return {
-        fetchOngoingIncidents: (userToken) => {
-            dispatch(fetchOnGoingIncidents(userToken, fetchOnGoingIncidents(onIncidentVolunteersChangeCb)))
+        fetchOngoingIncidents: (userId, userToken, location) => {
+            dispatch(fetchOnGoingIncidents(userId, userToken, location, onIncidentVolunteersChangeCb))
         },
         fetchMineIncidents: (userId, userToken) => {
             dispatch(fetchMineIncidents(userId, userToken))

@@ -30,10 +30,25 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.user.signedIn) {
+            this.setCurrentLocation();
             Actions.incidentListContainer();
         } else if (!nextProps.user.signedIn) {
             this.toggleErrorModal();
         }
+    }
+
+    setCurrentLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const location = {
+                    lat: JSON.stringify(position.coords.latitude),
+                    lng: JSON.stringify(position.coords.longitude)
+                };
+                this.props.updateLocation(location)
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
     }
 
     toggleAction() {

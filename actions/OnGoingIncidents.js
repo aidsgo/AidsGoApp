@@ -23,7 +23,7 @@ function requestOnGoingIncidentsFail(error) {
     };
 }
 
-export function fetchOnGoingIncidents(userToken, onIncidentVolunteersChangeCb) {
+export function fetchOnGoingIncidents(userId, userToken, location, onIncidentVolunteersChangeCb) {
     const config = ({
         method: 'GET',
         headers: {
@@ -35,7 +35,7 @@ export function fetchOnGoingIncidents(userToken, onIncidentVolunteersChangeCb) {
     });
     return function (dispatch) {
         dispatch(requestOnGoingIncidents());
-        return fetch('http://localhost:3000/emergencies?name=name&volunteer_location={lat:34.256403,lng:108.953661}', config)
+        return fetch(`http://localhost:3000/emergencies?volunteer_id=${userId}&volunteer_location=${location}`, config)
             .then(response => {
                 if (response.status === 200) {
                     return response.json();
