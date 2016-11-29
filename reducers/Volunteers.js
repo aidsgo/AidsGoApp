@@ -14,7 +14,7 @@ const volunteers = (state = {}, action) => {
     switch (action.type) {
         case VOLUNTEERS_CHANGED_FOR_INCIDENT:
             let existedVolunteers = Object.keys(state);
-            let newVolunteers = action.volunteers.filter(userId => {
+            let newVolunteers = (action.volunteers || []).filter(userId => {
                 return existedVolunteers.indexOf(userId) < 0;
             });
             newVolunteers.forEach(function (userId) {

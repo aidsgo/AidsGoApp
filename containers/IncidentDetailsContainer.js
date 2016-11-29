@@ -4,7 +4,7 @@ import IncidentDetails from '../components/IncidentDetails'
 
 const mapStateToProps = (state, ownProps) => {
     let incident = Object.assign({}, state.incidents[ownProps.incident.id]);
-    incident.taken = new Map(incident.taken.map(volunteerId => {
+    incident.taken = new Map((incident.taken|| []).map(volunteerId => {
         return [volunteerId, state.volunteers[volunteerId]]
     }));
     return {
