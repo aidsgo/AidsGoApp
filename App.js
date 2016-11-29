@@ -33,10 +33,12 @@ class App extends Component {
     componentDidMount() {
         setInterval(() => {
             navigator.geolocation.getCurrentPosition(position => {
-                usersRef.child(`${store.getState().user.id}`).set({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                })
+                if(store.getState().user.profile && store.getState().user.profile.id){
+                    usersRef.child(`${store.getState().user.profile.id}`).set({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    })
+                }
             }, error => {
                 console.log(JSON.stringify(error));
             }, {enableHighAccuracy: true, timeout: 20000});
