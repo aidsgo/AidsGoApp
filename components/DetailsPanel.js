@@ -11,6 +11,7 @@ import {
 
 import Communications from 'react-native-communications';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import {generateTimeString} from './../helper/Utils';
 
 class DetailsPanel extends Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class DetailsPanel extends Component {
                         <View>
                             <View style={styles.time}>
                                 <IonIcon style={{color: "#545960"}} name='md-time' size={23}/>
-                                <Text style={{marginLeft: 10}}>9:35 AM</Text>
+                                <Text style={{marginLeft: 10}}>{generateTimeString(this.props.incident.time)}</Text>
                             </View>
 
                             <View style={styles.incidentInfo}>
