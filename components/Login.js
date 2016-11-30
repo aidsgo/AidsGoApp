@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {Actions} from 'react-native-router-flux';
-import {
+import ReactNative, {
     StyleSheet,
     View,
     Image,
     Text,
     TextInput,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView
 } from 'react-native';
 
 import md5 from "react-native-md5";
@@ -90,43 +91,45 @@ class Login extends Component {
             <View style={styles.container}>
                 <Image source={require('./../public/img/background_1.png')} style={styles.backgroundImage}>
                     <View style={styles.mask}>
-                        <View style={[styles.circle, styles.shadow]}>
-                            <Image style={styles.avatar} source={require('./../public/img/avatar.png')}/>
-                        </View>
-                        <View style={styles.actionToggle}>
-                            <TouchableOpacity style={[styles.leftMask, this.state.action === 'signUp' ? styles.selected : {}]} onPress={() => this.toggleAction()}>
-                                <Text style={styles.actionText}>注   册</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[styles.rightMask, this.state.action === 'logIn' ? styles.selected : {}]} onPress={() => this.toggleAction()}>
-                                <Text style={styles.actionText}>登   录</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.halfMask}>
-                            <View style={[styles.loginput, styles.size, styles.shadow, styles.username]}>
-                                <Image source={require('./../public/img/user.png')} style={styles.icon}/>
-                                <View style={styles.upright}/>
-                                <TextInput style={styles.input} placeholder='  电    话' placeholderTextColor='white'
-                                           onChangeText={(value) => {this.handlePhone(value)}}>
-
-                                </TextInput>
+                        <KeyboardAvoidingView behavior={'position'}>
+                            <View style={[styles.circle, styles.shadow]}>
+                                <Image style={styles.avatar} source={require('./../public/img/avatar.png')}/>
                             </View>
-                            <View style={[styles.loginput, styles.size, styles.shadow, styles.password]}>
-                                <Image source={require('./../public/img/lock.png')} style={styles.icon}/>
-                                <View style={styles.upright}/>
-                                <TextInput style={styles.input} placeholder='  密    码' placeholderTextColor='white'
-                                           onChangeText={(value) => {this.handlePassword(value)}}>
-
-                                </TextInput>
+                            <View style={styles.actionToggle}>
+                                <TouchableOpacity style={[styles.leftMask, this.state.action === 'signUp' ? styles.selected : {}]} onPress={() => this.toggleAction()}>
+                                    <Text style={styles.actionText}>注   册</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.rightMask, this.state.action === 'logIn' ? styles.selected : {}]} onPress={() => this.toggleAction()}>
+                                    <Text style={styles.actionText}>登   录</Text>
+                                </TouchableOpacity>
                             </View>
-                            <TouchableOpacity style={[styles.loginput, styles.size, styles.shadow, styles.button]}
-                                              onPress={() => this.login()}>
-                                <Text style={styles.loginText}>{this.state.action === 'logIn' ? '登      录' : '注      册'}</Text>
-                            </TouchableOpacity>
-                            {this.state.action === 'logIn' ? <View style={styles.forget}>
-                                <Text style={styles.tabText}>忘记密码?</Text>
-                            </View> : null}
-                        </View>
-                        {this.state.errorModal ? this.errorModal() : null}
+                            <View style={styles.halfMask}>
+                                <View style={[styles.loginput, styles.size, styles.shadow, styles.username]}>
+                                    <Image source={require('./../public/img/user.png')} style={styles.icon}/>
+                                    <View style={styles.upright}/>
+                                    <TextInput style={styles.input} placeholder='  电    话' placeholderTextColor='white'
+                                               onChangeText={(value) => {this.handlePhone(value)}}>
+
+                                    </TextInput>
+                                </View>
+                                <View style={[styles.loginput, styles.size, styles.shadow, styles.password]}>
+                                    <Image source={require('./../public/img/lock.png')} style={styles.icon}/>
+                                    <View style={styles.upright}/>
+                                    <TextInput style={styles.input} placeholder='  密    码' placeholderTextColor='white'
+                                               onChangeText={(value) => {this.handlePassword(value)}}>
+
+                                    </TextInput>
+                                </View>
+                                <TouchableOpacity style={[styles.loginput, styles.size, styles.shadow, styles.button]}
+                                                  onPress={() => this.login()}>
+                                    <Text style={styles.loginText}>{this.state.action === 'logIn' ? '登      录' : '注      册'}</Text>
+                                </TouchableOpacity>
+                                {this.state.action === 'logIn' ? <View style={styles.forget}>
+                                    <Text style={styles.tabText}>忘记密码?</Text>
+                                </View> : null}
+                            </View>
+                            {this.state.errorModal ? this.errorModal() : null}
+                        </KeyboardAvoidingView>
                     </View>
                 </Image>
             </View>
