@@ -12,6 +12,12 @@ import Logo from './components/Logo';
 import UserContainer from './containers/UserContainer';
 import HelpInstructionDetail from './components/HelpInstrcuctionDetail'
 
+
+import ReactNative, {
+    AsyncStorage,
+} from 'react-native';
+
+
 const RouterWithRedux = connect()(Router);
 import reducers from './reducers/Index';
 const middleware = [thunkMiddleware];
@@ -30,7 +36,25 @@ wilddog.initializeApp(usersConfig);
 let usersRef = wilddog.sync().ref();
 
 class App extends Component {
+
+    _loadInitailUserState = async () => {
+        try {
+            const value = await AsyncStorage.getItem('userProfile');
+            console.log(value);
+            if (value !== null) {
+                store.getState().user.profile = value;
+                Actions.incidentListContainer()
+            } else {
+                Actions.aigsGoLogin()
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
     componentDidMount() {
+        this._loadInitailUserState();
         setInterval(() => {
             navigator.geolocation.getCurrentPosition(position => {
                 if(store.getState().user.profile && store.getState().user.profile.id){

@@ -1,5 +1,18 @@
 import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION} from '../actions/ActionTypes';
 
+import ReactNative, {
+    AsyncStorage,
+} from 'react-native';
+
+
+storeUserProfile = async (profile) => {
+    try {
+        await AsyncStorage.setItem("userProfile", profile);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 const user = (state={}, action) => {
     switch (action.type) {
         case UPDATE_LOCATION:
@@ -7,6 +20,7 @@ const user = (state={}, action) => {
                 location: action.location
             });
         case ENTER_SUCCESS:
+            storeUserProfile(JSON.stringify(action.userInfo));
             return Object.assign({}, state, {
                 signedIn: true,
                 profile: action.userInfo
