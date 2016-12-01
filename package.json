@@ -9,6 +9,7 @@
     "moment": "^2.17.0",
     "react": "15.2.1",
     "react-native": "0.31.0",
+    "react-native-baidumap": "0.0.14",
     "react-native-communications": "1.0.1",
     "react-native-image-picker": "^0.21.5",
     "react-native-jpush": "^1.0.9",
