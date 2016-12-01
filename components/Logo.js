@@ -8,9 +8,6 @@ import {
 
 class Logo extends Component {
     render() {
-        setTimeout(() => {
-            Actions.aigsGoLogin();
-        }, 2000);
         return (
             <View style={styles.container}>
                 <View>
