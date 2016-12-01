@@ -19,3 +19,7 @@ export const generateTimeString = (time) => {
 const generateYMD = (time) => {
     return `${time.getFullYear()}${time.getMonth()}${time.getDate()}`;
 };
+
+export const exactTime = time => {
+    return moment(time).format('YYYY/MM/DD h:mm:ss');
+};

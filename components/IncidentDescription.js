@@ -18,7 +18,7 @@ class IncidentDescription extends Component {
         const iconName = this.props.incident.resolved ? 'check' : 'exclamation';
         return (
             <TouchableOpacity style={[styles.container, styles.shadow]}
-                              onPress={() => Actions.incidentDetailsContainer({incident: this.props.incident})}>
+                              onPress={() => {this.props.incident.resolved? Actions.incidentReview({incident: this.props.incident}): Actions.incidentDetailsContainer({incident: this.props.incident})}}>
                 <LinearGradient colors={['#FF807C', '#E7736E']} style={styles.indicator}>
                     <FAIcon style={{color: 'white'}} name={iconName} size={24}/>
                 </LinearGradient>
