@@ -26,10 +26,14 @@ class IncidentDetails extends Component {
         this.setState({showImageUpload: true})
     }
 
+    onCancelResolveBtnPressed() {
+        this.setState({showImageUpload: false})
+    }
+
     content() {
         if (this.state.showImageUpload) {
             return (
-                <ImageUpload {...this.props}/>
+                <ImageUpload {...this.props} onCancelResolveBtnPressed={this.onCancelResolveBtnPressed.bind(this)}/>
             )
         } else {
             return (
@@ -52,7 +56,8 @@ class IncidentDetails extends Component {
                         <Icon style={{color: '#FFFFFF', top: 20, right: 30}} name={'ios-medkit'} size={40}/>
                     </TouchableOpacity>
                 </View>
-                <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng} volunteers={this.props.incident.taken}/>
+                <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng}
+                     volunteers={this.props.incident.taken}/>
                 {this.content()}
             </View>
         );

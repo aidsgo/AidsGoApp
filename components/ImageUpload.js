@@ -49,20 +49,21 @@ class ImageUpload extends Component {
     }
 
     render() {
-        const {incident, user, onIncidentResolve} = this.props;
+        const {incident, user, onIncidentResolve, onCancelResolveBtnPressed} = this.props;
         return (
             <View style={styles.container}>
-                <View style={styles.camera}>
-                    <Icon style={{}} name='ios-camera-outline' size={45}/>
-                </View>
+                <TouchableOpacity style={styles.close} onPress={() => onCancelResolveBtnPressed()}>
+                    <Icon style={{color: '#A7AAA9'}} name='ios-close' size={60}/>
+                </TouchableOpacity>
                 <View style={styles.imagesPanel}>
                     {
                         (incident.images || []).map((image) => {
                             return <Image source={image} style={styles.itemLayout}/>
                         })
                     }
-                    <TouchableOpacity style={[styles.uploadBtn, styles.itemLayout]} onPress={this.uploadImage.bind(this)}>
-                        <Icon style={{color: "#979797"}} name='ios-add' size={60}/>
+                    <TouchableOpacity style={[styles.uploadBtn, styles.itemLayout]}
+                                      onPress={this.uploadImage.bind(this)}>
+                        <Icon style={{color: "#979797"}} name='ios-camera-outline' size={60}/>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.btn}
@@ -85,9 +86,9 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
     },
-    camera: {
+    close: {
         position: 'absolute',
-        top: -25,
+        top: -30,
         right: 25,
         alignItems: 'center',
         overflow: 'hidden',
@@ -109,19 +110,18 @@ const styles = StyleSheet.create({
         zIndex: 20,
         flexWrap: 'wrap'
     },
-    itemLayout:  {
+    itemLayout: {
         marginLeft: 2,
         marginRight: 2,
-        marginTop: 6,
-        marginBottom: 6,
+        marginTop: 4,
+        marginBottom: 4,
         width: (deviceWidth - 36) / 3,
-        height: (deviceWidth - 36) / 3
+        height: (deviceWidth - 36) * 0.75 / 3
     },
     uploadBtn: {
-        borderWidth: 1,
-        borderColor: '#979797',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#DDDEE0'
     },
     btn: {
         marginLeft: 20,
