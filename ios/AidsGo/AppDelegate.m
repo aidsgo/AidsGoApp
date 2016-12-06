@@ -12,7 +12,10 @@
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
 #import "RCTJPush.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
+
+BMKMapManager* _mapManager;
 
 @implementation AppDelegate
 
@@ -34,9 +37,21 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [RCTJPush application:application didFinishLaunchingWithOptions:launchOptions];
+  
+  _mapManager = [[BMKMapManager alloc]init];
+  // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+  BOOL ret = [_mapManager start:@"3Rh1i0sqeM4sxhrPGEzKsetD"  generalDelegate:nil];
+  if (!ret) {
+    NSLog(@"manager start failed!");
+  }
 
   return YES;
 }
+
+
+
+
+
 
 // Required to register for notifications
 
