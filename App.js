@@ -39,8 +39,8 @@ class App extends Component {
 
     _loadInitailUserState = async () => {
         try {
-            const value = await AsyncStorage.getItem('userProfile');
-            console.log(value);
+            const valueSting = await AsyncStorage.getItem('userProfile');
+            const value = JSON.parse(valueSting);
             if (value !== null) {
                 store.getState().user.profile = value;
                 Actions.incidentListContainer()
@@ -51,7 +51,6 @@ class App extends Component {
             console.log(error);
         }
     };
-
 
     componentDidMount() {
         this._loadInitailUserState();
