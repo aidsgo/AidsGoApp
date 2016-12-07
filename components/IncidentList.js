@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
+    Image,
     Text,
     View,
     ListView,
@@ -40,6 +41,9 @@ class IncidentList extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.tabRow}>
+                    <TouchableOpacity onPress={() => Actions.profile()}>
+                        <Image source={require('./../public/img/user.png')} style={styles.icon}/>
+                    </TouchableOpacity>
                     <TouchableOpacity
                         style={[styles.tab, styles.firstTab, this.state.currentTab=='onGoing'? styles.currentTab: {}]}
                         onPress={() => {this.onSwitchTab('onGoing')}}>
@@ -90,10 +94,18 @@ const styles = StyleSheet.create({
         alignItems: 'center'
 
     },
+    icon: {
+        position: 'absolute',
+        top: 3,
+        right: 38,
+        resizeMode: 'stretch',
+        width: 24,
+        height: 24
+    },
     medKit:{
         position: 'absolute',
         bottom: 10,
-        right: 10
+        right: 24
     },
     firstTab: {
         borderTopLeftRadius: 5,

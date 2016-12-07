@@ -10,6 +10,7 @@ import IncidentReviewContainer from './containers/IncidentReviewContainer';
 import HelpInstructionsContainer from './containers/HelpInstructionsListContainer';
 import Logo from './components/Logo';
 import UserContainer from './containers/UserContainer';
+import ProfileContainer from './containers/ProfileContainer';
 import HelpInstructionDetail from './components/HelpInstrcuctionDetail'
 
 
@@ -76,7 +77,7 @@ class App extends Component {
                         <Scene key="logo" component={Logo} initial={true} hideNavBar={true}/>
 
                         <Scene key="aigsGoLogin" component={UserContainer} hideNavBar={true}/>
-
+                        <Scene key="profile" component={ProfileContainer} hideNavBar={true} />
                         <Scene key="incidentListContainer" component={IncidentListContainer} type={'reset'}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0, height: 60}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}

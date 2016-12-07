@@ -1,4 +1,4 @@
-import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION} from '../actions/ActionTypes';
+import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION, UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE} from '../actions/ActionTypes';
 
 import ReactNative, {
     AsyncStorage,
@@ -29,6 +29,11 @@ const user = (state={}, action) => {
             return Object.assign({}, state, {
                 signedIn: false
             });
+        case UPDATE_PROFILE_SUCCESS:
+            return Object.assign({}, state, {
+                profile: action.userInfo
+            });
+        case UPDATE_PROFILE_FAILURE:
         default:
             return state
     }
