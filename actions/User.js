@@ -1,4 +1,4 @@
-import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION} from '../actions/ActionTypes';
+import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION, UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE} from '../actions/ActionTypes';
 
 function enterSuccess(userInfo) {
     return {
@@ -12,6 +12,19 @@ function enterFailure() {
         type: ENTER_FAILURE
     };
 }
+
+export const updateSuccess = (userInfo) => {
+    return {
+        type: UPDATE_PROFILE_SUCCESS,
+        userInfo: userInfo
+    }
+};
+
+export const updateFailure = () => {
+    return {
+        type: UPDATE_PROFILE_FAILURE
+    }
+};
 
 export const updateLocation = (location) => {
     return {
@@ -43,6 +56,29 @@ export const userEnter = (action, phoneNumber, password) => {
             .then(checkStatus).then(parseJson, redirect)
             .then(json => dispatch(enterSuccess(json)))
             .catch(error => dispatch(enterFailure(error)));
+    }
+};
+
+export const updateProfile = (user, userToken) => {
+    const fetchURL = 'http://localhost:3000/volunteers/update';
+    const body = JSON.stringify(
+        {user: user}
+    );
+    const config = ({
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': userToken
+        },
+        credentials: 'same-origin',
+        body
+    });
+    return function (dispatch) {
+        return fetch(fetchURL, config)
+            .then(checkStatus).then(parseJson, redirect)
+            .then(json => dispatch(updateSuccess(json)))
+            .catch(error => dispatch(updateFailure(error)));
     }
 };
 
