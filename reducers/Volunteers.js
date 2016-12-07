@@ -18,9 +18,11 @@ const volunteers = (state = {}, action) => {
                 return existedVolunteers.indexOf(userId) < 0;
             });
             newVolunteers.forEach(function (userId) {
-                usersRef.child(`${userId}`).on("value", function (snapshot) {
-                    action.onVolunteerLocationChangedCb(userId, snapshot.val());
-                });
+                setTimeout(function () {
+                    usersRef.child(`${userId}`).on("value", function (snapshot) {
+                        action.onVolunteerLocationChangedCb(userId, snapshot.val());
+                    });
+                }, 0);
             });
             let newVolunteersWithLocation = {};
             newVolunteers.forEach(function (userId) {

@@ -22,9 +22,11 @@ const onGoingIncidents = (state = {isFetching: false, items: [], refs: [], error
             let incidentIds = Object.keys(action.incidents);
 
             incidentIds.forEach(incidentId => {
-                incidentsRef.child(`${incidentId}/volunteers`).on("value", function (snapshot) {
-                    action.onIncidentVolunteersChangeCb(incidentId, snapshot.val());
-                });
+                setTimeout(function () {
+                    incidentsRef.child(`${incidentId}/volunteers`).on("value", function (snapshot) {
+                        action.onIncidentVolunteersChangeCb(incidentId, snapshot.val());
+                    });
+                }, 0);
             });
 
             return Object.assign({}, state, {
