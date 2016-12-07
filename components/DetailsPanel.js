@@ -21,13 +21,15 @@ class DetailsPanel extends Component {
     toggleBtn() {
         if (this.props.detailsPanelExpanded) {
             return (
-                <TouchableOpacity style={styles.toggleBtn} onPress={this.props.onDetailsPanelHide}>
-                    <IonIcon style={{color: "#545960"}} name='ios-arrow-down' size={40}/>
+                <TouchableOpacity style={[styles.collapseBtn, styles.toggleBtn]}
+                                  onPress={this.props.onDetailsPanelHide}>
+                    <IonIcon style={{color: "#545960", top: -15}} name='ios-arrow-down' size={45}/>
                 </TouchableOpacity>
             )
         } else {
             return (
-                <TouchableOpacity style={styles.toggleBtn} onPress={this.props.onDetailsPanelExpand}>
+                <TouchableOpacity style={[styles.expandBtn, styles.toggleBtn]}
+                                  onPress={this.props.onDetailsPanelExpand}>
                     <IonIcon style={{color: "#545960"}} name='ios-arrow-up' size={40}/>
                 </TouchableOpacity>
             )
@@ -65,7 +67,7 @@ class DetailsPanel extends Component {
                         </View>
                         <View style={styles.logo}>
                             <Image style={{width: 65, height: 65, resizeMode: 'contain'}}
-                                   source={require('../public/img/logo.png')}></Image>
+                                   source={require('../public/img/logo.png')} />
                         </View>
                     </View>
 
@@ -109,17 +111,28 @@ const styles = StyleSheet.create({
         bottom: 85,
         width: deviceWidth - 20
     },
+    collapseBtn: {
+        top: -15
+    },
+    expandBtn: {
+        top: -75,
+        shadowColor: 'black',
+        shadowOffset: {
+            height: 2,
+            width: 0
+        },
+        shadowOpacity: 0.5
+    },
     toggleBtn: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: 60,
-        height: 60,
-        borderRadius: 30,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
         backgroundColor: '#FFFFFF',
         position: 'absolute',
-        right: deviceWidth / 2 - 30,
-        top: -50
+        right: deviceWidth / 2 - 40
     },
     panelContainer: {
         padding: 15,
