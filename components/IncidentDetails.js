@@ -66,7 +66,7 @@ class IncidentDetails extends Component {
                     </TouchableOpacity>
                 </View>
                 <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng}
-                     volunteers={this.props.incident.taken}/>
+                     volunteers={this.props.incident.taken} userId={this.props.user.profile.id}/>
                 {this.content()}
             </View>
         );

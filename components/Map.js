@@ -10,8 +10,9 @@ import MapView from 'react-native-baidumap';
 class Map extends Component {
     volunteers() {
         let volunteersMarker = [];
+        const that = this;
         this.props.volunteers.forEach((location, volunteerId) => {
-            if (location) {
+            if (location && location.lat && location.lng && volunteerId != that.props.userId) {
                 volunteersMarker.push({
                     latitude: location.lat,
                     longitude: location.lng,
