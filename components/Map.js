@@ -16,7 +16,7 @@ class Map extends Component {
                 volunteersMarker.push({
                     latitude: location.lat,
                     longitude: location.lng,
-                    image: require('../public/img/80.png')
+                    image: require('../public/img/hero-map.png')
                 });
             }
         });
