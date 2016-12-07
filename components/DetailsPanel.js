@@ -67,7 +67,7 @@ class DetailsPanel extends Component {
                         </View>
                         <View style={styles.logo}>
                             <Image style={{width: 65, height: 65, resizeMode: 'contain'}}
-                                   source={require('../public/img/logo.png')} />
+                                   source={require('../public/img/logo.png')}/>
                         </View>
                     </View>
 
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         width: deviceWidth - 20
     },
     collapseBtn: {
-        top: -15
+        top: -40
     },
     expandBtn: {
         top: -75,
@@ -132,11 +132,10 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         backgroundColor: '#FFFFFF',
         position: 'absolute',
-        right: deviceWidth / 2 - 40
+        right: (deviceWidth - 20) / 2 - 40
     },
     panelContainer: {
         padding: 15,
-        marginTop: 20,
         backgroundColor: '#FFFFFF'
     },
     takenInfo: {
