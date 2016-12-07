@@ -8,7 +8,7 @@ import {
 import MapView from 'react-native-baidumap';
 
 class Map extends Component {
-    volunteers() {
+    volunteerMarkers() {
         let volunteersMarker = [];
         const that = this;
         this.props.volunteers.forEach((location, volunteerId) => {
@@ -23,13 +23,21 @@ class Map extends Component {
         return volunteersMarker;
     }
 
+    incidentMarker() {
+        return {
+            latitude: this.props.lat,
+            longitude: this.props.lng,
+            image: require('../public/img/avatar.png')
+        }
+    }
+
     render() {
         return (
             <MapView
                 style={styles.map}
                 showsUserLocation={true}
                 userLocationViewParams={{accuracyCircleFillColor: 'blue'}}
-                annotations={this.volunteers()}
+                annotations={[...this.volunteerMarkers(), this.incidentMarker()]}
             />
         );
     }
