@@ -18,7 +18,8 @@ class IncidentDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showImageUpload: false
+            showImageUpload: false,
+            detailsPanelExpanded: true
         }
     }
 
@@ -30,6 +31,14 @@ class IncidentDetails extends Component {
         this.setState({showImageUpload: false})
     }
 
+    onDetailsPanelHide() {
+        this.setState({detailsPanelExpanded: false})
+    }
+
+    onDetailsPanelExpand() {
+        this.setState({detailsPanelExpanded: true})
+    }
+
     content() {
         if (this.state.showImageUpload) {
             return (
@@ -38,7 +47,7 @@ class IncidentDetails extends Component {
         } else {
             return (
                 <View>
-                    <DetailsPanel incident={this.props.incident}/>
+                    <DetailsPanel incident={this.props.incident} detailsPanelExpanded={this.state.detailsPanelExpanded} onDetailsPanelHide={this.onDetailsPanelHide.bind(this)} onDetailsPanelExpand={this.onDetailsPanelExpand.bind(this)}/>
                     <ActionButton {...this.props} onResolveBtnPressed={this.onResolveBtnPressed.bind(this)}/>
                 </View>
             )

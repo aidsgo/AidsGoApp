@@ -16,33 +16,18 @@ import {generateTimeString} from './../helper/Utils';
 class DetailsPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            panelExpanded: true
-        }
-    }
-
-    hide() {
-        this.setState({
-            panelExpanded: false
-        })
-    }
-
-    expand() {
-        this.setState({
-            panelExpanded: true
-        })
     }
 
     toggleBtn() {
-        if (this.state.panelExpanded) {
+        if (this.props.detailsPanelExpanded) {
             return (
-                <TouchableOpacity style={styles.toggleBtn} onPress={this.hide.bind(this)}>
+                <TouchableOpacity style={styles.toggleBtn} onPress={this.props.onDetailsPanelHide}>
                     <IonIcon style={{color: "#545960"}} name='ios-arrow-down' size={40}/>
                 </TouchableOpacity>
             )
         } else {
             return (
-                <TouchableOpacity style={styles.toggleBtn} onPress={this.expand.bind(this)}>
+                <TouchableOpacity style={styles.toggleBtn} onPress={this.props.onDetailsPanelExpand}>
                     <IonIcon style={{color: "#545960"}} name='ios-arrow-up' size={40}/>
                 </TouchableOpacity>
             )
@@ -50,7 +35,7 @@ class DetailsPanel extends Component {
     }
 
     detailsPanel() {
-        if (this.state.panelExpanded) {
+        if (this.props.detailsPanelExpanded) {
             return (
                 <ScrollView style={styles.panelContainer}>
                     <View style={styles.takenInfo}>
