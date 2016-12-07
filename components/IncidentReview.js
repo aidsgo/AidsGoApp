@@ -103,12 +103,10 @@ const styles = StyleSheet.create({
     photo: {
         marginLeft: 2,
         marginRight: 2,
-        marginTop: 6,
-        marginBottom: 6,
-        width: (deviceWidth - 78) / 3,
-        height: (deviceWidth - 78) / 3,
-        borderColor: '#DADADA',
-        borderWidth: 2,
+        marginTop: 4,
+        marginBottom: 4,
+        width: (deviceWidth - 76) / 3,
+        height: (deviceWidth - 76) * 0.75 / 3,
     },
     backToList: {
         alignItems: 'center',

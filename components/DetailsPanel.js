@@ -23,7 +23,7 @@ class DetailsPanel extends Component {
             return (
                 <TouchableOpacity style={[styles.collapseBtn, styles.toggleBtn]}
                                   onPress={this.props.onDetailsPanelHide}>
-                    <IonIcon style={{color: "#545960", top: -15}} name='ios-arrow-down' size={45}/>
+                    <IonIcon style={{color: "#545960", top: -12}} name='ios-arrow-down' size={45}/>
                 </TouchableOpacity>
             )
         } else {
