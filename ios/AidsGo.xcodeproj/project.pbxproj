@@ -32,13 +32,13 @@
 		840B756028604DFBBB8F8107 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB9222B925B9458887280AE6 /* MaterialIcons.ttf */; };
 		8D2A2153EDAA4AF798476F1F /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19C0B8544CEE444FBDA065F8 /* FontAwesome.ttf */; };
 		8E51C376D1A445E09367CBF2 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4431A40CA5FE49F38308E149 /* libRNImagePicker.a */; };
+		A6A7EB081DF7F33D004A4380 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2C187AD1DF6BF2F007F0387 /* mapapi.bundle */; };
 		ABBF314910DE403EB93A4FC5 /* libRCTJPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E05243E4CE34BC887A18B75 /* libRCTJPush.a */; };
 		B1CBA650A24340D196576740 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 229EC3C3665E439ABB8D1166 /* libBVLinearGradient.a */; };
 		B208712B1DCC79DD00CA3979 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B208712A1DCC79DD00CA3979 /* libz.tbd */; };
 		B208713C1DCC79F000CA3979 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B208713B1DCC79F000CA3979 /* CoreTelephony.framework */; };
 		B208713E1DCC79FF00CA3979 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B208713D1DCC79FF00CA3979 /* Security.framework */; };
 		B20871401DCC7AC900CA3979 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B208713F1DCC7AC900CA3979 /* PushConfig.plist */; };
-		B2C187A91DF6B4F0007F0387 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2C187A81DF6B4F0007F0387 /* mapapi.bundle */; };
 		B2C187AE1DF6BF2F007F0387 /* mapapi.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C187AD1DF6BF2F007F0387 /* mapapi.bundle */; };
 		B2EC4BD81DF06FD2005E7B59 /* libRCTBaiduMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EC4BCA1DF06FBC005E7B59 /* libRCTBaiduMap.a */; };
 		B2EC4BDD1DF07101005E7B59 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EC4BD91DF07101005E7B59 /* BaiduMapAPI_Base.framework */; };
@@ -224,7 +224,6 @@
 		B208713D1DCC79FF00CA3979 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B208713F1DCC7AC900CA3979 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PushConfig.plist; path = AidsGo/PushConfig.plist; sourceTree = "<group>"; };
 		B23A6C201D6E99180029EB51 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
-		B2C187A81DF6B4F0007F0387 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = /Users/dongchen/workshop/hackday/AidsGoApp/ios/mapapi.bundle; sourceTree = "<absolute>"; };
 		B2C187AD1DF6BF2F007F0387 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = mapapi.bundle; path = "../node_modules/react-native-baidumap/ios/RCTBaiduMap/RCTBaiduMap/BaiduMap/BaiduMapAPI_Map.framework/Resources/mapapi.bundle"; sourceTree = "<group>"; };
 		B2EC4BC21DF06FBC005E7B59 /* RCTBaiduMap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBaiduMap.xcodeproj; path = "../node_modules/react-native-baidumap/ios/RCTBaiduMap/RCTBaiduMap.xcodeproj"; sourceTree = "<group>"; };
 		B2EC4BD91DF07101005E7B59 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = "../node_modules/react-native-baidumap/ios/RCTBaiduMap/RCTBaiduMap/BaiduMap/BaiduMapAPI_Base.framework"; sourceTree = "<group>"; };
@@ -824,9 +823,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6A7EB081DF7F33D004A4380 /* mapapi.bundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				B2C187A91DF6B4F0007F0387 /* mapapi.bundle in Resources */,
 				46CDD1DC00234075ACF045A0 /* Entypo.ttf in Resources */,
 				D7AC806434D6417BA7E9FAF7 /* EvilIcons.ttf in Resources */,
 				8D2A2153EDAA4AF798476F1F /* FontAwesome.ttf in Resources */,
