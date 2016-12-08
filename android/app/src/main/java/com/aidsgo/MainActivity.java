@@ -4,6 +4,7 @@ import com.facebook.react.ReactActivity;
 import com.BV.LinearGradient.LinearGradientPackage;
 import cn.reactnative.modules.jpush.JPushPackage;
 import com.imagepicker.ImagePickerPackage;
+import com.yiyang.reactnativebaidumap.ReactMapPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 
