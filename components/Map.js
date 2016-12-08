@@ -31,10 +31,26 @@ class Map extends Component {
         }
     }
 
+    points() {
+        let points = [];
+        this.props.volunteers.forEach((location, volunteerId) => {
+            if (location && location.lat && location.lng) {
+                points.push([location.lat, location.lng])
+            }
+        });
+        points.push([this.props.lat, this.props.lng]);
+        return points;
+    }
+
+    componentDidMount() {
+        this.refs["mapView"].zoomToLocs(this.points());
+    }
+
     render() {
         return (
             <MapView
                 style={styles.map}
+                ref="mapView"
                 showsUserLocation={true}
                 userLocationViewParams={{accuracyCircleFillColor: 'blue'}}
                 annotations={[...this.volunteerMarkers(), this.incidentMarker()]}
