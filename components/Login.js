@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     },
     size: {
         width: width / 1.5,
-        height: 40
+        height: 44
     },
     loginput: {
         alignSelf: 'center',
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 12,
         width: width / 2,
-        height: 30,
+        height: 36,
         marginTop: 5,
         backgroundColor: 'rgba(255,255,255,0.4)',
         color: '#53585F'
