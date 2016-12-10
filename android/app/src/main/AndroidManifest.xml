@@ -33,7 +33,7 @@
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
     <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="3Rh1i0sqeM4sxhrPGEzKsetD"/>
+            android:value="Kfkdacbb5lRSF3m17XzFoadIsK76aaCr"/>
   </application>
 
 </manifest>

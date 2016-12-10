@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+    Platform,
     StyleSheet,
     Dimensions,
     Image
@@ -62,7 +63,7 @@ class Map extends Component {
 const deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     map: {
-        height: deviceHeight
+        height: (Platform.OS === 'ios') ? deviceHeight : deviceHeight - 24
     }
 });
 

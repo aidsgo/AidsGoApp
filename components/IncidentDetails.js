@@ -19,7 +19,7 @@ class IncidentDetails extends Component {
         super(props);
         this.state = {
             showImageUpload: false,
-            detailsPanelExpanded: true
+            detailsPanelExpanded: false
         }
     }
 
@@ -47,7 +47,9 @@ class IncidentDetails extends Component {
         } else {
             return (
                 <View>
-                    <DetailsPanel incident={this.props.incident} detailsPanelExpanded={this.state.detailsPanelExpanded} onDetailsPanelHide={this.onDetailsPanelHide.bind(this)} onDetailsPanelExpand={this.onDetailsPanelExpand.bind(this)}/>
+                    <DetailsPanel incident={this.props.incident} detailsPanelExpanded={this.state.detailsPanelExpanded}
+                                  onDetailsPanelHide={this.onDetailsPanelHide.bind(this)}
+                                  onDetailsPanelExpand={this.onDetailsPanelExpand.bind(this)}/>
                     <ActionButton {...this.props} onResolveBtnPressed={this.onResolveBtnPressed.bind(this)}/>
                 </View>
             )
@@ -58,11 +60,11 @@ class IncidentDetails extends Component {
         return (
             <View style={{flex: 1}}>
                 <View style={styles.navBar}>
-                    <TouchableOpacity onPress={() => Actions.pop()}>
-                        <Icon style={{color: '#FFFFFF',  top: 20, left: 30}} name={'ios-arrow-back'} size={40}/>
+                    <TouchableOpacity style={styles.navLeft} onPress={() => Actions.pop()}>
+                        <Icon style={{color: '#FFFFFF'}} name={'ios-arrow-back'} size={40}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.helpInstructionsList()}>
-                        <Icon style={{color: '#FFFFFF', top: 20, right: 30}} name={'ios-medkit'} size={40}/>
+                    <TouchableOpacity style={styles.medKit} onPress={() => Actions.helpInstructionsList()}>
+                        <Icon style={{color: '#FFFFFF'}} name={'ios-medkit'} size={40}/>
                     </TouchableOpacity>
                 </View>
                 <Map lat={this.props.incident.location.lat} lng={this.props.incident.location.lng}
@@ -84,6 +86,16 @@ const styles = StyleSheet.create({
         zIndex: 10,
         backgroundColor: '#53585F',
         opacity: 0.4
+    },
+    navLeft:{
+        position:'absolute',
+        top:15,
+        left:10
+    },
+    medKit:{
+        position:'absolute',
+        top:15,
+        right:10
     }
 });
 
