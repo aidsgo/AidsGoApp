@@ -8,8 +8,11 @@ import {
     TextInput,
     Dimensions,
     TouchableOpacity,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native';
+
+import ImagePicker from 'react-native-image-picker';
 
 var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
@@ -27,7 +30,6 @@ class Profile extends Component {
 
     update() {
         const {name, sex, birthday, phone} = this.state;
-        console.log('this.props.user.',this.props.user);
         const user = {
             id: this.props.user.profile.id,
             name: name,
@@ -57,15 +59,43 @@ class Profile extends Component {
         }
     }
 
+    uploadImage() {
+        var options = {title: 'Select an image'};
+        var onImageUpload = this.props.onImageUpload.bind(this);
+        ImagePicker.showImagePicker(options, (response)=> {
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else {
+                var source;
+                if (Platform.OS === 'ios') {
+                    source = {uri: response.uri.replace('file://', ''), isStatic: true};
+                } else {
+                    source = {uri: response.uri, isStatic: true};
+                }
+                onImageUpload(source);
+            }
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <Image source={require('./../public/img/background_1.png')} style={styles.backgroundImage}>
                     <View style={styles.mask}>
                         <KeyboardAvoidingView behavior={'position'}>
-                            <View style={[styles.circle, styles.shadow]}>
-                                <Image style={styles.avatar} source={require('./../public/img/avatar.png')}/>
-                            </View>
+                            <TouchableOpacity style={[styles.circle, styles.shadow]}
+                                              onPress={this.uploadImage.bind(this)}>
+                                {this.props.user.profile.avatar ?
+                                    <Image style={styles.avatar} source={this.props.user.profile.avatar.uri}/>
+                                    :
+                                    <Image style={styles.avatar} source={require('./../public/img/avatar.png')}/>
+                                }
+
+                            </TouchableOpacity>
                             <View style={styles.form}>
                                 <View style={styles.bar}>
                                     <TouchableOpacity style={[styles.save, styles.shadow]}

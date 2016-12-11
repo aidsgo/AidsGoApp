@@ -1,4 +1,6 @@
-import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION, UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE} from '../actions/ActionTypes';
+import {ENTER_SUCCESS, ENTER_FAILURE, UPDATE_LOCATION,
+        UPDATE_PROFILE_SUCCESS, UPDATE_PROFILE_FAILURE,
+        UPLOAD_AVATAR} from '../actions/ActionTypes';
 
 function enterSuccess(userInfo) {
     return {
@@ -79,6 +81,13 @@ export const updateProfile = (user, userToken) => {
             .then(checkStatus).then(parseJson, redirect)
             .then(json => dispatch(updateSuccess(json)))
             .catch(error => dispatch(updateFailure(error)));
+    }
+};
+
+export const uploadImage = (image) => {
+    return {
+        type: UPLOAD_AVATAR,
+        image: image
     }
 };
 
