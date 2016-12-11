@@ -4,6 +4,9 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.yiyang.reactnativebaidumap.ReactMapPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,6 +32,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
+            new ReactNativeI18n(),
+            new ReactMapPackage(),
           new ImagePickerPackage(),
           new ReactMapPackage(),
           new MapsPackage()

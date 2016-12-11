@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2E644CB3EE344D508CD5A140 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03C9C39CC0B8463A9336AD55 /* Ionicons.ttf */; };
 		46CDD1DC00234075ACF045A0 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48AF983612704888846174B0 /* Entypo.ttf */; };
+		60E84FE10F5742378A728ACD /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B1167119C84C8F99E6BCA8 /* libRNI18n.a */; };
 		627A38DC08B5442EA616D58F /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46CB9839D9E74DAB8A7B7250 /* libAirMaps.a */; };
 		658B445300FD45EC99061E90 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 185FB583784C42BE93E9A24E /* Octicons.ttf */; };
 		66D455F4718B4B3EB2AAAECB /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D2FA3B307F4087984E9832 /* libRNVectorIcons.a */; };
@@ -140,6 +141,20 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		A66F51B81DFD540300041A0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DF05AC97C4942D49EA3DB54 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDD7BF781B2D5125006FDA75;
+			remoteInfo = RNI18n;
+		};
+		A66F51BA1DFD540300041A0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DF05AC97C4942D49EA3DB54 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDD7BF831B2D5126006FDA75;
+			remoteInfo = RNI18nTests;
+		};
 		A671BA911D6F372C0014CFA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C8D334BCD6C94425A2890CB4 /* AirMaps.xcodeproj */;
@@ -218,7 +233,9 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D41BC71E9DA42DF9B6F0965 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		9DF05AC97C4942D49EA3DB54 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		9E05243E4CE34BC887A18B75 /* libRCTJPush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTJPush.a; sourceTree = "<group>"; };
+		B0B1167119C84C8F99E6BCA8 /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
 		B208712A1DCC79DD00CA3979 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B208713B1DCC79F000CA3979 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B208713D1DCC79FF00CA3979 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -286,6 +303,7 @@
 				ABBF314910DE403EB93A4FC5 /* libRCTJPush.a in Frameworks */,
 				B2EC4BDE1DF07101005E7B59 /* BaiduMapAPI_Location.framework in Frameworks */,
 				B1CBA650A24340D196576740 /* libBVLinearGradient.a in Frameworks */,
+				60E84FE10F5742378A728ACD /* libRNI18n.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +449,7 @@
 				7D41BC71E9DA42DF9B6F0965 /* RNImagePicker.xcodeproj */,
 				095ECE539D6C46EAA351E37B /* RCTJPush.xcodeproj */,
 				0A18ED166B004A90ADABB274 /* BVLinearGradient.xcodeproj */,
+				9DF05AC97C4942D49EA3DB54 /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -483,6 +502,15 @@
 			isa = PBXGroup;
 			children = (
 				A65C3F381D6FD54900BFBFF5 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A66F51A51DFD540300041A0B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A66F51B91DFD540300041A0B /* libRNI18n.a */,
+				A66F51BB1DFD540300041A0B /* RNI18nTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -673,6 +701,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = A66F51A51DFD540300041A0B /* Products */;
+					ProjectRef = 9DF05AC97C4942D49EA3DB54 /* RNI18n.xcodeproj */;
+				},
+				{
 					ProductGroup = A65C3F281D6FD54900BFBFF5 /* Products */;
 					ProjectRef = 7D41BC71E9DA42DF9B6F0965 /* RNImagePicker.xcodeproj */;
 				},
@@ -765,6 +797,20 @@
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
 			remoteRef = A65C3F371D6FD54900BFBFF5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A66F51B91DFD540300041A0B /* libRNI18n.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNI18n.a;
+			remoteRef = A66F51B81DFD540300041A0B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A66F51BB1DFD540300041A0B /* RNI18nTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNI18nTests.xctest;
+			remoteRef = A66F51BA1DFD540300041A0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A671BA921D6F372C0014CFA0 /* libAirMaps.a */ = {
@@ -916,6 +962,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -933,6 +980,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -964,6 +1012,7 @@
 					"$(SRCROOT)/../node_modules/react-native-jpush/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-baidumap/ios/RCTBaiduMap/RCTBaiduMap/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				INFOPLIST_FILE = AidsGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -998,6 +1047,7 @@
 					"$(SRCROOT)/../node_modules/react-native-jpush/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-baidumap/ios/RCTBaiduMap/RCTBaiduMap/**",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				INFOPLIST_FILE = AidsGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -1058,6 +1108,7 @@
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-jpush/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1103,6 +1154,7 @@
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-jpush/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-i18n/RNI18n",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -12,6 +12,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 import {generateTimeString} from './../helper/Utils';
+import I18n from '../helper/I18n';
 
 class IncidentDescription extends Component {
     render() {
@@ -31,12 +32,9 @@ class IncidentDescription extends Component {
                     <View>
                         <Text style={{fontSize: 14}}>
                             <Text style={{fontWeight: 'bold'}}>{this.props.incident.name}</Text>
-                            <Text> need your help!</Text>
+                            <Text>{I18n.t('need_help')}</Text>
                         </Text>
-                        <Text style={{marginTop: 2, fontSize: 14}}>
-                            <Text style={{fontWeight: 'bold'}}>{this.props.incident.distance}</Text>
-                            <Text> meters away from you.</Text>
-                        </Text>
+                        <Text style={{marginTop: 2, fontSize: 14}}> {I18n.t('distance', {distance: this.props.incident.distance || 500})}</Text>
                     </View>
                 </View>
                 <View style={styles.logo}>

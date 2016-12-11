@@ -11,6 +11,7 @@
     "react-native": "0.31.0",
     "react-native-baidumap": "0.0.14",
     "react-native-communications": "1.0.1",
+    "react-native-i18n": "^0.1.1",
     "react-native-image-picker": "^0.21.5",
     "react-native-jpush": "^1.0.9",
     "react-native-linear-gradient": "1.5.15",

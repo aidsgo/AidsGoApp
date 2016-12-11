@@ -11,6 +11,7 @@ import {Actions} from 'react-native-router-flux';
 
 import IncidentDescription from './IncidentDescription'
 import Icon from 'react-native-vector-icons/Ionicons';
+import I18n from '../helper/I18n';
 
 class IncidentList extends Component {
     constructor(props) {
@@ -47,13 +48,13 @@ class IncidentList extends Component {
                     <TouchableOpacity
                         style={[styles.tab, styles.firstTab, this.state.currentTab=='onGoing'? styles.currentTab: {}]}
                         onPress={() => {this.onSwitchTab('onGoing')}}>
-                        <Text style={styles.tabText}>On going</Text>
+                        <Text style={styles.tabText}>{I18n.t('on_going')}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={[styles.tab, styles.lastTab, this.state.currentTab=='mine'? styles.currentTab: {}]}
                         onPress={() => {this.onSwitchTab('mine')}}>
-                        <Text style={styles.tabText}>Mine</Text>
+                        <Text style={styles.tabText}>{I18n.t('mine')}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
