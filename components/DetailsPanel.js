@@ -12,6 +12,7 @@ import {
 import Communications from 'react-native-communications';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import {generateTimeString} from './../helper/Utils';
+import I18n from '../helper/I18n';
 
 class DetailsPanel extends Component {
     constructor(props) {
@@ -42,8 +43,8 @@ class DetailsPanel extends Component {
                 <ScrollView style={styles.panelContainer}>
                     <View style={styles.takenInfo}>
                         <Text>
-                            <Text style={styles.bold}>{this.props.incident.taken.size} person</Text>
-                            <Text> have taken this incident!</Text>
+                            <Text style={styles.bold}>{I18n.t('person', {count: this.props.incident.taken.size})}</Text>
+                            <Text> {I18n.t('take_incident')}</Text>
                         </Text>
                     </View>
 
@@ -57,12 +58,10 @@ class DetailsPanel extends Component {
                             <View style={styles.incidentInfo}>
                                 <Text>
                                     <Text style={styles.bold}>{this.props.incident.name}</Text>
-                                    <Text> need your help!</Text>
+                                    <Text>{I18n.t('need_help')}</Text>
                                 </Text>
-                                <Text style={{marginTop: 5}}>
-                                    <Text style={styles.bold}>{this.props.incident.distance}</Text>
-                                    <Text> meters away from you.</Text>
-                                </Text>
+                                <Text
+                                    style={{marginTop: 5}}> {I18n.t('distance', {distance: this.props.incident.distance || 500})}</Text>
                             </View>
                         </View>
                         <View style={styles.logo}>
@@ -73,14 +72,14 @@ class DetailsPanel extends Component {
 
                     <View style={styles.contact}>
                         <View>
-                            <Text style={styles.bold}>Emergency Call: </Text>
+                            <Text style={styles.bold}>{I18n.t('emergency_call')}</Text>
                             <TouchableOpacity
                                 onPress={() => Communications.phonecall(this.props.incident.emergency_call, true)}>
                                 <Text style={styles.phone}>{this.props.incident.emergency_call}</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={{marginTop: 10}}>
-                            <Text style={styles.bold}>Property Management Company: </Text>
+                            <Text style={styles.bold}>{I18n.t('property_management_company_phone')}</Text>
                             <TouchableOpacity
                                 onPress={() => Communications.phonecall(this.props.incident.property_management_company_phone, true)}>
                                 <Text

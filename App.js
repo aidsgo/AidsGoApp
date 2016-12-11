@@ -12,7 +12,7 @@ import Logo from './components/Logo';
 import UserContainer from './containers/UserContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import HelpInstructionDetail from './components/HelpInstrcuctionDetail'
-
+import I18n from './helper/I18n';
 
 import ReactNative, {
     AsyncStorage,
@@ -81,7 +81,7 @@ class App extends Component {
                         <Scene key="incidentListContainer" component={IncidentListContainer} type={'reset'}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0, height: 60}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
-                               title="Incidents nearby" hideNavBar={false}/>
+                               title={I18n.t('incidents_nearby')} hideNavBar={false}/>
 
                         <Scene key="incidentDetailsContainer" component={IncidentDetailsContainer} hideNavBar={true}/>
                         <Scene key="incidentReview" component={IncidentReviewContainer} hideNavBar={true}/>
@@ -92,7 +92,7 @@ class App extends Component {
                                backTitle={<Icon style={{color: '#FFFFFF', width: 40, height: 40}} name={'ios-arrow-back'} size={25} />}
                                onBack={() => {Actions.pop()}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
-                               title="HelpInstructions" hideNavBar={false}/>
+                               title={I18n.t('help_tips')} hideNavBar={false}/>
 
                         <Scene key="helpInstructionsDetail" component={HelpInstructionDetail}
                                navigationBarStyle={{backgroundColor: '#EE8280', borderBottomWidth: 0}}
@@ -100,7 +100,7 @@ class App extends Component {
                                backTitle={<Icon style={{color: '#FFFFFF', width: 40, height: 40}} name={'ios-arrow-back'} size={25} />}
                                onBack={() => {Actions.pop()}}
                                titleStyle={{color: '#FFFFFF', fontWeight: 'bold', fontSize: 22}}
-                               title="救援帮助" hideNavBar={false}/>
+                               title={I18n.t('help_tips')} hideNavBar={false}/>
                     </Scene>
                 </RouterWithRedux>
             </Provider>

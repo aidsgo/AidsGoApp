@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
 } from 'react-native'
 
+import I18n from '../helper/I18n';
 
 class ActionButton extends Component {
     constructor(props) {
@@ -27,14 +28,14 @@ class ActionButton extends Component {
             return (
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {onResolveBtnPressed();}}>
-                    <Text style={styles.btnText}>Resolve</Text>
+                    <Text style={styles.btnText}>{I18n.t('resolve')}</Text>
                 </TouchableOpacity>
             )
         } else if (!this.isTakenByMe(incident, user.profile.id) && !this.isResolved(incident)) {
             return (
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {onIncidentAccept(incident.id, user.profile.id, user.profile.token);}}>
-                    <Text style={styles.btnText}>Volunteer</Text>
+                    <Text style={styles.btnText}>{I18n.t('volunteer')}</Text>
                 </TouchableOpacity>
             )
         } else {

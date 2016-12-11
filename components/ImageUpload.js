@@ -12,6 +12,7 @@ import {
 import {Actions} from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
+import I18n from '../helper/I18n';
 
 class ImageUpload extends Component {
     constructor(props) {
@@ -68,7 +69,7 @@ class ImageUpload extends Component {
                 </View>
                 <TouchableOpacity style={styles.btn}
                                   onPress={() => {onIncidentResolve(incident.id, user.profile.id, user.profile.token); Actions.incidentReview({incident: incident})}}>
-                    <Text style={styles.btnText}>Done</Text>
+                    <Text style={styles.btnText}>{I18n.t('done')}</Text>
                 </TouchableOpacity>
             </View>
         )
