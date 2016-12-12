@@ -28,7 +28,7 @@ class Map extends Component {
         return {
             latitude: this.props.lat,
             longitude: this.props.lng,
-            image: require('../public/img/avatar.png')
+            image: require('../public/img/emergency.png')
         }
     }
 
