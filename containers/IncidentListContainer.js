@@ -8,6 +8,8 @@ const mapStateToProps = (state, ownProps) => {
 
     const onGoingIncidentIds = state.onGoingIncidents.items;
     const mineIncidentIds = state.mineIncidents.items;
+    const onGoingIncidentsFetching = state.onGoingIncidents.isFetching;
+    const mineIncidentsFetching = state.mineIncidents.isFetching;
 
     let onGoingIncidents = [];
     onGoingIncidentIds.forEach(id => {
@@ -20,7 +22,9 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         onGoingIncidents: onGoingIncidents,
+        onGoingIncidentsFetching: onGoingIncidentsFetching,
         mineIncidents: mineIncidents,
+        mineIncidentsFetching: mineIncidentsFetching,
         user: state.user
     };
 };

@@ -5,7 +5,8 @@ import {
     Text,
     View,
     ListView,
-    TouchableOpacity
+    TouchableOpacity,
+    RefreshControl
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
@@ -21,6 +22,19 @@ class IncidentList extends Component {
 
     onSwitchTab(tab) {
         this.setState({currentTab: tab});
+    }
+
+    _onRefresh() {
+        const {id, token, location} = this.props.user.profile;
+        if (this.state.currentTab == 'mine') {
+            this.props.fetchMineIncidents(id, token);
+        } else {
+            this.props.fetchOngoingIncidents(id, token, location);
+        }
+    }
+
+    refreshing() {
+        return this.state.currentTab == 'mine' ? this.props.mineIncidentsFetching : this.props.onGoingIncidentsFetching
     }
 
     componentDidMount() {
@@ -64,8 +78,9 @@ class IncidentList extends Component {
                     </TouchableOpacity>
                 </View>
                 <ListView style={styles.list}
-                    dataSource={this.visibleIncidents()}
-                    renderRow={(incident) => <IncidentDescription incident={incident} ></IncidentDescription>}
+                          refreshControl={<RefreshControl refreshing={this.refreshing()} onRefresh={this._onRefresh.bind(this)}/>}
+                          dataSource={this.visibleIncidents()}
+                          renderRow={(incident) => <IncidentDescription incident={incident} />}
                 />
             </View>
         );
@@ -103,7 +118,7 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24
     },
-    medKit:{
+    medKit: {
         position: 'absolute',
         bottom: 10,
         right: 24
